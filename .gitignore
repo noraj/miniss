@@ -1,0 +1,6 @@
+/lib/
+/bin/miniss
+/bin/miniss.o
+/bin/miniss.dwarf
+/.shards/
+*.dwarf

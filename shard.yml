@@ -1,0 +1,23 @@
+name: miniss
+version: 0.0.1
+description: Displays a list of open listening sockets. It is a minimal alternative to ss or netstat.
+
+authors:
+  - Alexandre ZANNI <alexandre.zanni@europe.com>
+
+targets:
+  miniss:
+    main: src/cli.cr
+
+executables:
+  - miniss
+
+crystal: "~> 1.7.2"
+
+license: MIT
+documentation: https://github.com/noraj/miniss/tree/master/docs
+homepage: https://github.com/noraj/miniss
+repository: https://github.com/noraj/miniss
+
+dependencies:
+development_dependencies:
