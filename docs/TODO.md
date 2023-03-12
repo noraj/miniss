@@ -1,9 +1,9 @@
 TODO:
 
 - Code:
-  - Create a socket class for socket objects
   - Refactor code between cli & lib
   - IPv6 support
+  - UDP support
 - Doc:
   - https://crystal-lang.org/reference/1.7/syntax_and_semantics/documenting_code.html
   - https://crystal-lang.org/reference/1.7/man/crystal/#crystal-docs
