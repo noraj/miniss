@@ -1,7 +1,12 @@
 require "../miniss"
 
 module Miniss
-  TCP_STATES = { # /usr/src/linux/include/net/tcp_states.h
+  # TCP states code mapping.
+  #
+  # Used in `Miniss::Socket#parse_line`.
+  #
+  # NOTE: Parsed from `/usr/src/linux/include/net/tcp_states.h`.
+  TCP_STATES = {
     "00" => "UNKNOWN",
     "FF" => "UNKNOWN",
     "01" => "ESTABLISHED",

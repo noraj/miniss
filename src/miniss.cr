@@ -1,6 +1,9 @@
 require "./miniss/*"
 require "./miniss/etc/**"
-# TODO: Write documentation for `Miniss`
+# Displays a list of open listening sockets. It is a minimal alternative to `ss` or `netstat`.
 module Miniss
-  VERSION = {{ `shards version "#{__DIR__}"`.chomp.stringify }}
+  # `miniss` version.
+  #
+  # NOTE: see all versions available [on the release page](https://github.com/noraj/miniss/releases).
+  VERSION = "0.0.2"
 end

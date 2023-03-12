@@ -1,5 +1,5 @@
 name: miniss
-version: 0.0.1
+version: 0.0.2
 description: Displays a list of open listening sockets. It is a minimal alternative to ss or netstat.
 
 authors:

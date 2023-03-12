@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 1.6.2">
+<meta name="crystal_docs.project_version" content="master-dev">
+<meta name="crystal_docs.project_name" content="miniss">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="miniss">
+  <title>Miniss::Socket - miniss master-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          miniss
+        </a>
+      </h1>
+
+      <span class="project-version">
+        master-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="miniss/Miniss" data-name="miniss">
+      <a href="../Miniss.html">Miniss</a>
+      
+        <ul>
+  
+  <li class=" " data-id="miniss/Miniss/Etc" data-name="miniss::etc">
+      <a href="../Miniss/Etc.html">Etc</a>
+      
+    </li>
+  
+  <li class=" current" data-id="miniss/Miniss/Socket" data-name="miniss::socket">
+      <a href="../Miniss/Socket.html">Socket</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Miniss::Socket
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Miniss/Socket.html">Miniss::Socket</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      miniss/addr.cr
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28type%3ASymbol%2Cipv%3AUInt8%29-class-method" class="signature"><strong>.new</strong>(type : Symbol, ipv : UInt8)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#ipv%3AUInt8-instance-method" class="signature"><strong>#ipv</strong> : UInt8</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#laddr%3AString-instance-method" class="signature"><strong>#laddr</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#laddr%3D%28laddr%3AString%29-instance-method" class="signature"><strong>#laddr=</strong>(laddr : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse_line%28line%29-instance-method" class="signature"><strong>#parse_line</strong>(line)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raddr%3AString-instance-method" class="signature"><strong>#raddr</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raddr%3D%28raddr%3AString%29-instance-method" class="signature"><strong>#raddr=</strong>(raddr : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#state%3AString-instance-method" class="signature"><strong>#state</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#state%3D%28state%3AString%29-instance-method" class="signature"><strong>#state=</strong>(state : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#type%3ASymbol-instance-method" class="signature"><strong>#type</strong> : Symbol</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#uid%3AUInt32-instance-method" class="signature"><strong>#uid</strong> : UInt32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#uid%3D%28uid%3AUInt32%29-instance-method" class="signature"><strong>#uid=</strong>(uid : UInt32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#uname%3AString-instance-method" class="signature"><strong>#uname</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#uname%3D%28uname%3AString%29-instance-method" class="signature"><strong>#uname=</strong>(uname : String)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(type:Symbol,ipv:UInt8)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(type : Symbol, ipv : UInt8)
+
+        <a class="method-permalink" href="#new%28type%3ASymbol%2Cipv%3AUInt8%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="ipv:UInt8-instance-method">
+      <div class="signature">
+        
+        def <strong>ipv</strong> : UInt8
+
+        <a class="method-permalink" href="#ipv%3AUInt8-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="laddr:String-instance-method">
+      <div class="signature">
+        
+        def <strong>laddr</strong> : String
+
+        <a class="method-permalink" href="#laddr%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="laddr=(laddr:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>laddr=</strong>(laddr : String)
+
+        <a class="method-permalink" href="#laddr%3D%28laddr%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse_line(line)-instance-method">
+      <div class="signature">
+        
+        def <strong>parse_line</strong>(line)
+
+        <a class="method-permalink" href="#parse_line%28line%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raddr:String-instance-method">
+      <div class="signature">
+        
+        def <strong>raddr</strong> : String
+
+        <a class="method-permalink" href="#raddr%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raddr=(raddr:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>raddr=</strong>(raddr : String)
+
+        <a class="method-permalink" href="#raddr%3D%28raddr%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="state:String-instance-method">
+      <div class="signature">
+        
+        def <strong>state</strong> : String
+
+        <a class="method-permalink" href="#state%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="state=(state:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>state=</strong>(state : String)
+
+        <a class="method-permalink" href="#state%3D%28state%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="type:Symbol-instance-method">
+      <div class="signature">
+        
+        def <strong>type</strong> : Symbol
+
+        <a class="method-permalink" href="#type%3ASymbol-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="uid:UInt32-instance-method">
+      <div class="signature">
+        
+        def <strong>uid</strong> : UInt32
+
+        <a class="method-permalink" href="#uid%3AUInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="uid=(uid:UInt32)-instance-method">
+      <div class="signature">
+        
+        def <strong>uid=</strong>(uid : UInt32)
+
+        <a class="method-permalink" href="#uid%3D%28uid%3AUInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="uname:String-instance-method">
+      <div class="signature">
+        
+        def <strong>uname</strong> : String
+
+        <a class="method-permalink" href="#uname%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="uname=(uname:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>uname=</strong>(uname : String)
+
+        <a class="method-permalink" href="#uname%3D%28uname%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
