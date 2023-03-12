@@ -25,6 +25,15 @@ TODO: Write installation instructions here
   - [x] IPv4
   - [ ] IPv6
 
+## Documentation
+
+[![Library documentation](https://img.shields.io/badge/doc-library-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/lib-doc/Miniss.html)
+[![User documentation - Build](https://img.shields.io/badge/doc-build-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/build)
+[![User documentation - Changelog](https://img.shields.io/badge/doc-changelog-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/CHANGELOG)
+[![Developer documentation - Contributing](https://img.shields.io/badge/doc-contributing-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/creating)
+[![Developer documentation - Development](https://img.shields.io/badge/doc-development-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/development)
+[![User documentation - TODO](https://img.shields.io/badge/doc-todo-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/TODO)
+
 ## Author
 
 - [noraj](https://pwn.by/noraj/) - creator and maintainer
