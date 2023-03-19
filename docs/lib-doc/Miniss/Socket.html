@@ -90,6 +90,26 @@
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Socket object, having several properties.</p>
+<p>Example:</p>
+<pre><code class="language-crystal">so <span class="o">=</span> <span class="t">Miniss</span><span class="t">::</span><span class="t">Socket</span>.new(<span class="n">:tcp</span>, <span class="n">4_u8</span>)
+line <span class="o">=</span> <span class="t">File</span>.readlines(<span class="s">&quot;/proc/net/tcp&quot;</span>)[<span class="n">1</span>]
+so.parse_line(line)
+so.laddr <span class="c"># =&gt; &quot;127.0.0.53:53&quot;</span>
+so.state <span class="c"># =&gt; &quot;LISTEN&quot;</span>
+so.uname <span class="c"># =&gt; &quot;systemd-resolve&quot;</span>
+so.uid <span class="c"># =&gt; 980</span></code></pre>
+<p><span class="flag orange">TODO</span>  IPv6 and UDP support.</p>
+
 
 
 
@@ -135,6 +155,8 @@
       <li class="entry-summary">
         <a href="#new%28type%3ASymbol%2Cipv%3AUInt8%29-class-method" class="signature"><strong>.new</strong>(type : Symbol, ipv : UInt8)</a>
         
+          <div class="summary"><p>Initialize <code><a href="../Miniss/Socket.html">Socket</a></code> class.</p></div>
+        
       </li>
     
   </ul>
@@ -156,65 +178,91 @@
       <li class="entry-summary">
         <a href="#ipv%3AUInt8-instance-method" class="signature"><strong>#ipv</strong> : UInt8</a>
         
+          <div class="summary"><p>IP version (v4, v6).</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#laddr%3AString-instance-method" class="signature"><strong>#laddr</strong> : String</a>
+        
+          <div class="summary"><p>Local address (IP + port).</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#laddr%3D%28laddr%3AString%29-instance-method" class="signature"><strong>#laddr=</strong>(laddr : String)</a>
         
+          <div class="summary"><p>Local address (IP + port).</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#parse_line%28line%29-instance-method" class="signature"><strong>#parse_line</strong>(line)</a>
+        
+          <div class="summary"><p>Parse a socket <em>line</em> from <code>/proc/net/tcp</code> and set <code><a href="../Miniss/Socket.html">Socket</a></code> instance properties.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#raddr%3AString-instance-method" class="signature"><strong>#raddr</strong> : String</a>
         
+          <div class="summary"><p>Remote address (IP + port).</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#raddr%3D%28raddr%3AString%29-instance-method" class="signature"><strong>#raddr=</strong>(raddr : String)</a>
+        
+          <div class="summary"><p>Remote address (IP + port).</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#state%3AString-instance-method" class="signature"><strong>#state</strong> : String</a>
         
+          <div class="summary"><p>Socket state cf.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#state%3D%28state%3AString%29-instance-method" class="signature"><strong>#state=</strong>(state : String)</a>
+        
+          <div class="summary"><p>Socket state cf.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#type%3ASymbol-instance-method" class="signature"><strong>#type</strong> : Symbol</a>
         
+          <div class="summary"><p>Socket type (TCP, UDP).</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#uid%3AUInt32-instance-method" class="signature"><strong>#uid</strong> : UInt32</a>
+        
+          <div class="summary"><p>Process owner user ID.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#uid%3D%28uid%3AUInt32%29-instance-method" class="signature"><strong>#uid=</strong>(uid : UInt32)</a>
         
+          <div class="summary"><p>Process owner user ID.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#uname%3AString-instance-method" class="signature"><strong>#uname</strong> : String</a>
         
+          <div class="summary"><p>Process owner user name.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#uname%3D%28uname%3AString%29-instance-method" class="signature"><strong>#uname=</strong>(uname : String)</a>
+        
+          <div class="summary"><p>Process owner user name.</p></div>
         
       </li>
     
@@ -266,6 +314,12 @@
         <a class="method-permalink" href="#new%28type%3ASymbol%2Cipv%3AUInt8%29-class-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Initialize <code><a href="../Miniss/Socket.html">Socket</a></code> class.</p>
+<p>Choose the type of socket. Arguments: <em>type</em> (cf. <code><a href="../Miniss/Socket.html#type%3ASymbol-instance-method">#type</a></code>), <em>ipv</em> (cf. <code><a href="../Miniss/Socket.html#ipv%3AUInt8-instance-method">#ipv</a></code>).</p>
+        </div>
+      
       <br/>
       <div>
         
@@ -294,6 +348,12 @@
         <a class="method-permalink" href="#ipv%3AUInt8-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>IP version (v4, v6).</p>
+<p>Accepts values: <code>4_u8</code>, <code>6_u8</code>.</p>
+        </div>
+      
       <br/>
       <div>
         
@@ -307,6 +367,11 @@
 
         <a class="method-permalink" href="#laddr%3AString-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Local address (IP + port).</p>
+        </div>
       
       <br/>
       <div>
@@ -322,6 +387,11 @@
         <a class="method-permalink" href="#laddr%3D%28laddr%3AString%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Local address (IP + port).</p>
+        </div>
+      
       <br/>
       <div>
         
@@ -335,6 +405,12 @@
 
         <a class="method-permalink" href="#parse_line%28line%29-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Parse a socket <em>line</em> from <code>/proc/net/tcp</code> and set <code><a href="../Miniss/Socket.html">Socket</a></code> instance properties.</p>
+<p><span class="flag yellow">WARNING</span>  supports only <code><a href="../Miniss/Socket.html#type%3ASymbol-instance-method">#type</a></code> = <code>:tcp</code> and <code><a href="../Miniss/Socket.html#ipv%3AUInt8-instance-method">#ipv</a></code> = 4 for now.</p>
+        </div>
       
       <br/>
       <div>
@@ -350,6 +426,11 @@
         <a class="method-permalink" href="#raddr%3AString-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Remote address (IP + port).</p>
+        </div>
+      
       <br/>
       <div>
         
@@ -363,6 +444,11 @@
 
         <a class="method-permalink" href="#raddr%3D%28raddr%3AString%29-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Remote address (IP + port).</p>
+        </div>
       
       <br/>
       <div>
@@ -378,6 +464,11 @@
         <a class="method-permalink" href="#state%3AString-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Socket state cf. <code><a href="../Miniss.html#TCP_STATES">Miniss::TCP_STATES</a></code>.</p>
+        </div>
+      
       <br/>
       <div>
         
@@ -391,6 +482,11 @@
 
         <a class="method-permalink" href="#state%3D%28state%3AString%29-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Socket state cf. <code><a href="../Miniss.html#TCP_STATES">Miniss::TCP_STATES</a></code>.</p>
+        </div>
       
       <br/>
       <div>
@@ -406,6 +502,12 @@
         <a class="method-permalink" href="#type%3ASymbol-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Socket type (TCP, UDP).</p>
+<p>Accepts values: <code>:tcp</code>, <code>:udp</code>.</p>
+        </div>
+      
       <br/>
       <div>
         
@@ -419,6 +521,11 @@
 
         <a class="method-permalink" href="#uid%3AUInt32-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Process owner user ID.</p>
+        </div>
       
       <br/>
       <div>
@@ -434,6 +541,11 @@
         <a class="method-permalink" href="#uid%3D%28uid%3AUInt32%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Process owner user ID.</p>
+        </div>
+      
       <br/>
       <div>
         
@@ -448,6 +560,11 @@
         <a class="method-permalink" href="#uname%3AString-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Process owner user name.</p>
+        </div>
+      
       <br/>
       <div>
         
@@ -461,6 +578,11 @@
 
         <a class="method-permalink" href="#uname%3D%28uname%3AString%29-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Process owner user name.</p>
+        </div>
       
       <br/>
       <div>

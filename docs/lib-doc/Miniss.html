@@ -191,6 +191,8 @@
       <li class="entry-summary">
         <a href="#decode_addr%28addr%29-class-method" class="signature"><strong>.decode_addr</strong>(addr)</a>
         
+          <div class="summary"><p>Returns the decoded IP (v4) address + port from hexadecimal format (low nibble) to the dotted decimal format.</p></div>
+        
       </li>
     
   </ul>
@@ -224,6 +226,13 @@
 
         <a class="method-permalink" href="#decode_addr%28addr%29-class-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Returns the decoded IP (v4) address + port from hexadecimal format (low nibble) to the dotted decimal format.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="t">Miniss</span>.decode_addr(<span class="s">&quot;3500007F:0035&quot;</span>) <span class="c"># =&gt; &quot;127.0.0.53:53&quot;</span></code></pre>
+        </div>
       
       <br/>
       <div>
