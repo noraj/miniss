@@ -4,8 +4,6 @@ TODO:
   - Refactor code between cli & lib
   - IPv6 support
   - UDP support
-- Lint:
-  - https://github.com/crystal-ameba/ameba
 - Test:
   - https://github.com/ysbaddaden/minitest.cr
   - https://crystal-lang.org/api/1.7.2/Spec.html

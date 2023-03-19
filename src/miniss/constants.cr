@@ -20,6 +20,6 @@ module Miniss
     "09" => "LAST_ACK",
     "0A" => "LISTEN",
     "0B" => "CLOSING",
-    "0C" => "NEW_SYN_RECV"
+    "0C" => "NEW_SYN_RECV",
   }
 end

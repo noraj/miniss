@@ -4,3 +4,4 @@
 /bin/miniss.dwarf
 /.shards/
 *.dwarf
+/bin/ameba*

@@ -1,5 +1,6 @@
 require "./miniss/*"
 require "./miniss/etc/**"
+
 # Displays a list of open listening sockets. It is a minimal alternative to `ss` or `netstat`.
 module Miniss
   # `miniss` version.

@@ -10,7 +10,7 @@ module Miniss
   # ```
   def self.decode_addr(addr)
     ip, port = addr.split(":", remove_empty: true)
-    ip = ip.scan(/.{2}/).reverse_each.join('.'){ |x| x[0].to_i(16) }
+    ip = ip.scan(/.{2}/).reverse_each.join('.', &.[0].to_i(16))
     port = port.to_i(16).to_s
     "#{ip}:#{port}"
   end
@@ -26,7 +26,7 @@ module Miniss
   # so.laddr # => "127.0.0.53:53"
   # so.state # => "LISTEN"
   # so.uname # => "systemd-resolve"
-  # so.uid # => 980
+  # so.uid   # => 980
   # ```
   #
   # TODO: IPv6 and UDP support.
@@ -61,7 +61,7 @@ module Miniss
     # Choose the type of socket. Arguments: _type_ (cf. `#type`), _ipv_ (cf. `#ipv`).
     def initialize(type, ipv)
       @type = type # :tcp, :udp
-      @ipv = ipv # 4, 6
+      @ipv = ipv   # 4, 6
       @laddr = @raddr = @state = @uname = ""
       @uid = 0_u32
     end
