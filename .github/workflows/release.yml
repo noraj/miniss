@@ -1,0 +1,21 @@
+name: Build / Release
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  dist_linux:
+    runs-on: ubuntu-latest
+    container:
+      image: crystallang/crystal:1.7-alpine
+    steps:
+    - uses: actions/checkout@v3
+    - name: Update Libs
+      run: apk add --update --upgrade --no-cache --force-overwrite libxml2-dev yaml-dev
+    - name: Build
+      run: |
+        crystal build src/cli.cr --release --static --no-debug -o bin/miniss-x86_64-pc-linux-gnu --cross-compile --target x86_64-pc-linux-gnu
+        cc bin/miniss-x86_64-pc-linux-gnu.o -o bin/miniss-x86_64-pc-linux-gnu -rdynamic -static -L/usr/bin/../lib/crystal -lpcre -lm -lgc -lpthread -levent -lrt -lpthread -ldl
+        strip bin/miniss-x86_64-pc-linux-gnu
