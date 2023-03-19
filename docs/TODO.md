@@ -6,7 +6,6 @@ TODO:
   - UDP support
 - Documentation:
   - Install on README
-  - README badges
 - Optparse:
   - https://github.com/chenkovsky/docopt.cr
 - Color:
