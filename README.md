@@ -30,7 +30,7 @@ TODO: Write installation instructions here
   - local address, remote address, state, username, uid
 - Type of sockets:
   - [x] TCP
-  - [ ] UDP
+  - [x] UDP
 - IP version:
   - [x] IPv4
   - [ ] IPv6

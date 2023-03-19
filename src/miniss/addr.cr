@@ -68,13 +68,19 @@ module Miniss
 
     # Parse a socket _line_ from `/proc/net/tcp` and set `Socket` instance properties.
     #
-    # WARNING: supports only `#type` = `:tcp` and `#ipv` = `4` for now.
+    # WARNING: IPv6 not supported yet.
     def parse_line(line)
       entry = line.split(" ", remove_empty: true)
       if @type == :tcp && @ipv == 4 # /proc/net/tcp
         @laddr = Miniss.decode_addr(entry[1])
         @raddr = Miniss.decode_addr(entry[2])
         @state = Miniss::TCP_STATES[entry[3]]
+        @uid = entry[7].to_u32
+        @uname = Miniss::Etc.getpwuid(@uid)
+      elsif @type == :udp && @ipv == 4 # /proc/net/tcp
+        @laddr = Miniss.decode_addr(entry[1])
+        @raddr = Miniss.decode_addr(entry[2])
+        @state = Miniss::UDP_STATES[entry[3]]
         @uid = entry[7].to_u32
         @uname = Miniss::Etc.getpwuid(@uid)
       end

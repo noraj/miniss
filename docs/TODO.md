@@ -3,7 +3,6 @@ TODO:
 - Code:
   - Refactor code between cli & lib
   - IPv6 support
-  - UDP support
 - Documentation:
   - Install on README
 - Optparse:

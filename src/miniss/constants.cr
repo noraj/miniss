@@ -5,7 +5,7 @@ module Miniss
   #
   # Used in `Miniss::Socket#parse_line`.
   #
-  # NOTE: Parsed from `/usr/src/linux/include/net/tcp_states.h`.
+  # NOTE: Parsed from `/usr/src/linux/include/net/tcp_states.h`. I made the choice not to use the same words as `ss` (https://github.com/sivasankariit/iproute2/blob/1179ab033c31d2c67f406be5bcd5e4c0685855fe/misc/ss.c#L400-L413).
   TCP_STATES = {
     "00" => "UNKNOWN",
     "FF" => "UNKNOWN",
@@ -22,4 +22,11 @@ module Miniss
     "0B" => "CLOSING",
     "0C" => "NEW_SYN_RECV",
   }
+
+  # UDP "states" (UDP is stateless) code mapping.
+  #
+  # Used in `Miniss::Socket#parse_line`.
+  #
+  # NOTE: `sk_state` in `/usr/src/linux/include/net/udp.h` is always ESTABLISHED or CLOSE (`ss` shows UNCONN for unconnected).
+  UDP_STATES = TCP_STATES
 end
