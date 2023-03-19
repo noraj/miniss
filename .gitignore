@@ -2,6 +2,7 @@
 /bin/miniss
 /bin/miniss.o
 /bin/miniss.dwarf
+/bin/miniss-*
 /.shards/
 *.dwarf
 /bin/ameba*

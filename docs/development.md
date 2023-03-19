@@ -18,3 +18,16 @@ Ref.
 [ameba](https://github.com/crystal-ameba/ameba) is used as a linter.
 
 `shards install` will install it under `./bin/ameba`.
+
+### Test
+
+Run all test suites:
+
+```
+crystal spec --order=random --error-on-warnings
+```
+
+Ref.
+
+- [Crystal doc - Testing Crystal Code](https://crystal-lang.org/reference/1.7/guides/testing.html)
+- [Crystal api - Spec](https://crystal-lang.org/api/1.7.2/Spec.html)
