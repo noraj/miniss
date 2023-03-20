@@ -1,16 +1,28 @@
+require "socket"
 require "../miniss"
 
 module Miniss
-  # Returns the decoded IP (v4) address + port from hexadecimal format (low nibble) to the dotted decimal format.
+  # Returns the decoded IPv4 address + port from hexadecimal format (low nibble) to the dotted decimal format.
+  # Returns the decoded IPv6 address + port from hexadecimal format (low nibble) to the double-dotted hexadecimal format.
   #
   # Example:
   #
   # ```
-  # Miniss.decode_addr("3500007F:0035") # => "127.0.0.53:53"
+  # Miniss.decode_addr("3500007F:0035", 4_u8) # => "127.0.0.53:53"
+  # Miniss.decode_addr("000080FE00000000FF005450B6AD1DFE:0222", 6_u8) # => "[fe80::5054:ff:fe1d:adb6]:546"
+  # Miniss.decode_addr("00000000000000000000000000000000:14E9", 6_u8) # => "[::]:5353"
   # ```
-  def self.decode_addr(addr)
+  def self.decode_addr(addr : String, ipv : UInt8)
     ip, port = addr.split(":", remove_empty: true)
-    ip = ip.scan(/.{2}/).reverse_each.join('.', &.[0].to_i(16))
+    if ipv == 4
+      ip = ip.scan(/.{2}/).reverse_each.join('.', &.[0].to_i(16))
+    elsif ipv == 6
+      ip = ip.scan(/.{2}/).reverse_each.join("", &.[0]) # re-order
+      ip = ip.scan(/.{8}/).reverse_each.join("", &.[0]) # re-order
+      ip = ip.scan(/.{4}/).each.join(':', &.[0].sub(/^[0]+/, "")) # add double-dots and remove leading zeros
+      ip = ip.sub(/:{3,}/, "::").downcase # strip more than two consecutive double-dots and put to lower case
+      ip = "[#{ip}]" # enclose with square brackets
+    end
     port = port.to_i(16).to_s
     "#{ip}:#{port}"
   end
@@ -28,9 +40,7 @@ module Miniss
   # so.uname # => "systemd-resolve"
   # so.uid   # => 980
   # ```
-  #
-  # TODO: IPv6 and UDP support.
-  class Socket
+  class MinissSocket
     # Local address (IP + port).
     property laddr : String
 
@@ -56,7 +66,7 @@ module Miniss
     # Accepts values: `4_u8`, `6_u8`.
     getter ipv : UInt8
 
-    # Initialize `Socket` class.
+    # Initialize `MinissSocket` class.
     #
     # Choose the type of socket. Arguments: _type_ (cf. `#type`), _ipv_ (cf. `#ipv`).
     def initialize(type, ipv)
@@ -66,24 +76,23 @@ module Miniss
       @uid = 0_u32
     end
 
-    # Parse a socket _line_ from `/proc/net/tcp` and set `Socket` instance properties.
-    #
-    # WARNING: IPv6 not supported yet.
+    # Parse a socket _line_ from `/proc/net/XXX` and set `MinissSocket` instance properties.
     def parse_line(line)
       entry = line.split(" ", remove_empty: true)
-      if @type == :tcp && @ipv == 4 # /proc/net/tcp
-        @laddr = Miniss.decode_addr(entry[1])
-        @raddr = Miniss.decode_addr(entry[2])
+      if @type == :tcp
         @state = Miniss::TCP_STATES[entry[3]]
-        @uid = entry[7].to_u32
-        @uname = Miniss::Etc.getpwuid(@uid)
-      elsif @type == :udp && @ipv == 4 # /proc/net/tcp
-        @laddr = Miniss.decode_addr(entry[1])
-        @raddr = Miniss.decode_addr(entry[2])
+      elsif @type == :udp
         @state = Miniss::UDP_STATES[entry[3]]
-        @uid = entry[7].to_u32
-        @uname = Miniss::Etc.getpwuid(@uid)
       end
+      if @ipv == 4
+        @laddr = Miniss.decode_addr(entry[1], 4_u8)
+        @raddr = Miniss.decode_addr(entry[2], 4_u8)
+      elsif @ipv == 6
+        @laddr = Miniss.decode_addr(entry[1], 6_u8)
+        @raddr = Miniss.decode_addr(entry[2], 6_u8)
+      end
+      @uid = entry[7].to_u32
+      @uname = Miniss::Etc.getpwuid(@uid)
     end
   end
 end

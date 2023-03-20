@@ -33,7 +33,7 @@ TODO: Write installation instructions here
   - [x] UDP
 - IP version:
   - [x] IPv4
-  - [ ] IPv6
+  - [x] IPv6
 
 ## Documentation
 

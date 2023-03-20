@@ -1,8 +1,16 @@
+# Third-party dependencies
 /lib/
+# Local binaries
 /bin/miniss
 /bin/miniss.o
 /bin/miniss.dwarf
+# Cross compiled binaries
 /bin/miniss-*
+# Shards cache
 /.shards/
+# Misc
 *.dwarf
+# Third-party binaries
 /bin/ameba*
+# Local dev PoC
+src/poc.cr
