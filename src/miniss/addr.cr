@@ -1,4 +1,3 @@
-require "socket"
 require "../miniss"
 
 module Miniss
@@ -8,7 +7,7 @@ module Miniss
   # Example:
   #
   # ```
-  # Miniss.decode_addr("3500007F:0035", 4_u8) # => "127.0.0.53:53"
+  # Miniss.decode_addr("3500007F:0035", 4_u8)                         # => "127.0.0.53:53"
   # Miniss.decode_addr("000080FE00000000FF005450B6AD1DFE:0222", 6_u8) # => "[fe80::5054:ff:fe1d:adb6]:546"
   # Miniss.decode_addr("00000000000000000000000000000000:14E9", 6_u8) # => "[::]:5353"
   # ```
@@ -17,11 +16,11 @@ module Miniss
     if ipv == 4
       ip = ip.scan(/.{2}/).reverse_each.join('.', &.[0].to_i(16))
     elsif ipv == 6
-      ip = ip.scan(/.{2}/).reverse_each.join("", &.[0]) # re-order
-      ip = ip.scan(/.{8}/).reverse_each.join("", &.[0]) # re-order
+      ip = ip.scan(/.{2}/).reverse_each.join("", &.[0])           # re-order
+      ip = ip.scan(/.{8}/).reverse_each.join("", &.[0])           # re-order
       ip = ip.scan(/.{4}/).each.join(':', &.[0].sub(/^[0]+/, "")) # add double-dots and remove leading zeros
-      ip = ip.sub(/:{3,}/, "::").downcase # strip more than two consecutive double-dots and put to lower case
-      ip = "[#{ip}]" # enclose with square brackets
+      ip = ip.sub(/:{3,}/, "::").downcase                         # strip more than two consecutive double-dots and put to lower case
+      ip = "[#{ip}]"                                              # enclose with square brackets
     end
     port = port.to_i(16).to_s
     "#{ip}:#{port}"
