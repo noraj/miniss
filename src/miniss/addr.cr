@@ -39,7 +39,7 @@ module Miniss
   # so.uname # => "systemd-resolve"
   # so.uid   # => 980
   # ```
-  class MinissSocket
+  class Socket
     # Local address (IP + port).
     property laddr : String
 
@@ -65,7 +65,7 @@ module Miniss
     # Accepts values: `4_u8`, `6_u8`.
     getter ipv : UInt8
 
-    # Initialize `MinissSocket` class.
+    # Initialize `Socket` class.
     #
     # Choose the type of socket. Arguments: _type_ (cf. `#type`), _ipv_ (cf. `#ipv`).
     def initialize(type, ipv)
@@ -75,7 +75,7 @@ module Miniss
       @uid = 0_u32
     end
 
-    # Parse a socket _line_ from `/proc/net/XXX` and set `MinissSocket` instance properties.
+    # Parse a socket _line_ from `/proc/net/XXX` and set `Socket` instance properties.
     def parse_line(line)
       entry = line.split(" ", remove_empty: true)
       if @type == :tcp

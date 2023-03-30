@@ -3,7 +3,7 @@ require "../miniss"
 module Miniss
   # TCP states code mapping.
   #
-  # Used in `Miniss::MinissSocket#parse_line`.
+  # Used in `Miniss::Socket#parse_line`.
   #
   # NOTE: Parsed from `/usr/src/linux/include/net/tcp_states.h`. I made the choice not to use the same words as `ss` (https://github.com/sivasankariit/iproute2/blob/1179ab033c31d2c67f406be5bcd5e4c0685855fe/misc/ss.c#L400-L413).
   TCP_STATES = {
@@ -25,7 +25,7 @@ module Miniss
 
   # UDP "states" (UDP is stateless) code mapping.
   #
-  # Used in `Miniss::MinissSocket#parse_line`.
+  # Used in `Miniss::Socket#parse_line`.
   #
   # NOTE: `sk_state` in `/usr/src/linux/include/net/udp.h` is always ESTABLISHED or CLOSE (`ss` shows UNCONN for unconnected).
   UDP_STATES = TCP_STATES
