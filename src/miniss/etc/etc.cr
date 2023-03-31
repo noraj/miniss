@@ -15,7 +15,7 @@ module Miniss::Etc
   # ```
   # Miniss::Etc.getpwuid(0) # => "root"
   # ```
-  def self.getpwuid(uid)
+  def self.getpwuid(uid) : String
     File.read_lines("/etc/passwd").each do |line|
       entry = line.split(":", remove_empty: false)
       return entry[0] if entry[2] == uid.to_s

@@ -2,8 +2,8 @@ TODO:
 
 - Code:
   - Create some methods and class to clean Miniss::Cli
-  - Methods that read all lines of /proc/net/XXX and returns an array of Socket
   - Dynamic column with
+- Chore: doc  & test for Miniss::Sockets
 - Documentation:
   - Install on README
 - Optparse:

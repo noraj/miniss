@@ -11,7 +11,7 @@ module Miniss
   # Miniss.decode_addr("000080FE00000000FF005450B6AD1DFE:0222", 6_u8) # => "[fe80::5054:ff:fe1d:adb6]:546"
   # Miniss.decode_addr("00000000000000000000000000000000:14E9", 6_u8) # => "[::]:5353"
   # ```
-  def self.decode_addr(addr : String, ipv : UInt8)
+  def self.decode_addr(addr : String, ipv : UInt8) : String
     ip, port = addr.split(":", remove_empty: true)
     if ipv == 4
       ip = ip.scan(/.{2}/).reverse_each.join('.', &.[0].to_i(16))
@@ -68,7 +68,7 @@ module Miniss
     # Initialize `Socket` class.
     #
     # Choose the type of socket. Arguments: _type_ (cf. `#type`), _ipv_ (cf. `#ipv`).
-    def initialize(type, ipv)
+    def initialize(type : Symbol, ipv : UInt8)
       @type = type # :tcp, :udp
       @ipv = ipv   # 4, 6
       @laddr = @raddr = @state = @uname = ""
@@ -76,7 +76,7 @@ module Miniss
     end
 
     # Parse a socket _line_ from `/proc/net/XXX` and set `Socket` instance properties.
-    def parse_line(line)
+    def parse_line(line : String) : Nil
       entry = line.split(" ", remove_empty: true)
       if @type == :tcp
         @state = Miniss::TCP_STATES[entry[3]]
@@ -92,6 +92,68 @@ module Miniss
       end
       @uid = entry[7].to_u32
       @uname = Miniss::Etc.getpwuid(@uid)
+    end
+  end
+
+  class Sockets
+    getter tcpv4 : Array(Socket)
+    getter tcpv6 : Array(Socket)
+    getter udpv4 : Array(Socket)
+    getter udpv6 : Array(Socket)
+
+    def initialize
+      @tcpv4 = parse_tcpv4
+      @tcpv6 = parse_tcpv6
+      @udpv4 = parse_udpv4
+      @udpv6 = parse_udpv6
+    end
+
+    def parse_tcpv4 : Array(Socket)
+      sockets = Array(Socket).new
+      File.read_lines("/proc/net/tcp").each_with_index do |line, i|
+        so = Miniss::Socket.new(:tcp, 4_u8)
+        unless i == 0 # skip headers
+          so.parse_line(line)
+          sockets << so
+        end
+      end
+      @tcpv4 = sockets
+    end
+
+    def parse_tcpv6 : Array(Socket)
+      sockets = Array(Socket).new
+      File.read_lines("/proc/net/tcp6").each_with_index do |line, i|
+        so = Miniss::Socket.new(:tcp, 6_u8)
+        unless i == 0 # skip headers
+          so.parse_line(line)
+          sockets << so
+        end
+      end
+      @tcpv6 = sockets
+    end
+
+    def parse_udpv4 : Array(Socket)
+      sockets = Array(Socket).new
+      File.read_lines("/proc/net/udp").each_with_index do |line, i|
+        so = Miniss::Socket.new(:udp, 4_u8)
+        unless i == 0 # skip headers
+          so.parse_line(line)
+          sockets << so
+        end
+      end
+      @udpv4 = sockets
+    end
+
+    def parse_udpv6 : Array(Socket)
+      sockets = Array(Socket).new
+      File.read_lines("/proc/net/udp6").each_with_index do |line, i|
+        so = Miniss::Socket.new(:udp, 6_u8)
+        unless i == 0 # skip headers
+          so.parse_line(line)
+          sockets << so
+        end
+      end
+      @udpv6 = sockets
     end
   end
 end
