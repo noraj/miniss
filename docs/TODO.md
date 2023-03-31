@@ -4,9 +4,6 @@ TODO:
   - Create some methods and class to clean Miniss::Cli
   - Methods that read all lines of /proc/net/XXX and returns an array of Socket
   - Dynamic column with
-- Tests:
-  - Tests for UDP
-  - Tests for IPv6
 - Documentation:
   - Install on README
 - Optparse:
