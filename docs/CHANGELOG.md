@@ -4,6 +4,7 @@
 - **Code**: Create a new `Miniss::Sockets` to handle the enumeration of `Miniss::Socket`.
 - **Code**: Add UDP support.
 - **Code**: Add IPv6 support.
+- **Code**: Dynamic column width.
 - **Quality**: Begin documenting the code.
 - **Quality**: Lint the code.
 - **Quality**: Add unit tests.

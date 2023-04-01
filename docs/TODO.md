@@ -1,8 +1,5 @@
 TODO:
 
-- Code:
-  - Create some methods and class to clean Miniss::Cli
-  - Dynamic column with
 - Documentation:
   - Install on README
 - Optparse:
