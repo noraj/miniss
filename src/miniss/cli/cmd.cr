@@ -7,16 +7,16 @@ module Miniss::Cli
   # `sockets_obj` is an instance of `Miniss::Sockets`.
   private def self.find_max_just(sockets_obj : Sockets) : Hash
     just = {
-      type: 4, # type size is constant (3), label size is 4, so fix just to 5
+      type:  4, # type size is constant (3), label size is 4, so fix just to 5
       laddr: 0,
       raddr: 0,
-      state: 0
+      state: 0,
     }.to_h
     just_min = { # min size due to the label size
-      type: "type".size,
+      type:  "type".size,
       laddr: "local address".size,
       raddr: "remote address".size,
-      state: "state".size
+      state: "state".size,
     }
     all_sockets = sockets_obj.tcpv4 + sockets_obj.tcpv6 + sockets_obj.udpv4 + sockets_obj.udpv6
     all_sockets.each do |so|
@@ -26,7 +26,7 @@ module Miniss::Cli
     end
     # Keep the highest value betwenn the min just size and the max attr size
     # Also add +1 so that columns are not joint
-    just[:type], just[:laddr], just[:raddr], just[:state] = [just.values,just_min.values].transpose.map { |x| x.max + 1 }
+    just[:type], just[:laddr], just[:raddr], just[:state] = [just.values, just_min.values].transpose.map { |x| x.max + 1 }
     just
   end
 
