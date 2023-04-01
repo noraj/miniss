@@ -3,7 +3,7 @@ TODO:
 - Code:
   - Create some methods and class to clean Miniss::Cli
   - Dynamic column with
-- Chore: doc  & test for Miniss::Sockets
+- Chore: doc & test for Miniss::Sockets
 - Documentation:
   - Install on README
 - Optparse:

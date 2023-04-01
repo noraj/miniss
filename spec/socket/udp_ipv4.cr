@@ -61,10 +61,10 @@ describe "Miniss::Socket" do
     end
 
     # depends on the system where it is executed
-    #it "returns correct value" do
+    # it "returns correct value" do
     #  so = create_test_socket_udp_ipv4
     #  so.uname.should eq "systemd-network"
-    #end
+    # end
   end
 
   describe "#type" do

@@ -95,12 +95,31 @@ module Miniss
     end
   end
 
+  # Sockets object has properties containing arrays of `Sockets` from the parsed
+  # `/proc/net/xxx` files.
+  #
+  # Example:
+  #
+  # ```
+  # sockets = Miniss::Sockets.new
+  # sockets.tcpv4.each do |so|
+  #   puts "#{so.laddr} <-> #{so.raddr}"
+  # end
+  # ```
   class Sockets
+    # All IPv4 TCP sockets
     getter tcpv4 : Array(Socket)
+
+    # All IPv6 TCP sockets
     getter tcpv6 : Array(Socket)
+
+    # All IPv4 UDP sockets
     getter udpv4 : Array(Socket)
+
+    # All IPv6 UDP sockets
     getter udpv6 : Array(Socket)
 
+    # Initialize `Sockets` class.
     def initialize
       @tcpv4 = parse_tcpv4
       @tcpv6 = parse_tcpv6
@@ -108,6 +127,7 @@ module Miniss
       @udpv6 = parse_udpv6
     end
 
+    # Parse all IPv4 TCP sockets from `/proc/net/tcp`.
     def parse_tcpv4 : Array(Socket)
       sockets = Array(Socket).new
       File.read_lines("/proc/net/tcp").each_with_index do |line, i|
@@ -120,6 +140,7 @@ module Miniss
       @tcpv4 = sockets
     end
 
+    # Parse all IPv6 TCP sockets from `/proc/net/tcp6`.
     def parse_tcpv6 : Array(Socket)
       sockets = Array(Socket).new
       File.read_lines("/proc/net/tcp6").each_with_index do |line, i|
@@ -132,6 +153,7 @@ module Miniss
       @tcpv6 = sockets
     end
 
+    # Parse all IPv4 UDP sockets from `/proc/net/udp`.
     def parse_udpv4 : Array(Socket)
       sockets = Array(Socket).new
       File.read_lines("/proc/net/udp").each_with_index do |line, i|
@@ -144,6 +166,7 @@ module Miniss
       @udpv4 = sockets
     end
 
+    # Parse all IPv6 UDP sockets from `/proc/net/udp6`.
     def parse_udpv6 : Array(Socket)
       sockets = Array(Socket).new
       File.read_lines("/proc/net/udp6").each_with_index do |line, i|

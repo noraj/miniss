@@ -61,10 +61,10 @@ describe "Miniss::Socket" do
     end
 
     # depends on the system where it is executed
-    #it "returns correct value" do
+    # it "returns correct value" do
     #  so = create_test_socket_tcp_ipv6
     #  so.uname.should eq "systemd-resolve"
-    #end
+    # end
   end
 
   describe "#type" do
