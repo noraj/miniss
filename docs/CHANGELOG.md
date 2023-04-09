@@ -1,6 +1,6 @@
 # CHANGELOG
 
-[0.0.2](https://github.com/noraj/miniss/releases/tag/0.0.2)
+## [0.0.2](https://github.com/noraj/miniss/releases/tag/0.0.2)
 
 - **Code**: Create a new `Miniss::Socket` class so sockets are objects, make the code cleaner, more concise, more modular and more reusable.
 - **Code**: Create a new `Miniss::Sockets` to handle the enumeration of `Miniss::Socket`.
@@ -14,6 +14,6 @@
 - **Quality**: Add more typing.
 - **Branding**: Add a logo.
 
-[0.0.1](https://github.com/noraj/miniss/releases/tag/0.0.1)
+## [0.0.1](https://github.com/noraj/miniss/releases/tag/0.0.1)
 
 - Early alpha release.

@@ -11,12 +11,20 @@
 
 The goal of **miniss** is not to reinvent the wheel but rather to offer a static binary that can be deployed by pentester or CTF players on containers or hardened environnement where the classical `ss` or `netstat` binaries have been removed.
 
+![preview](docs/preview.png)
+
 ## Build
 
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/noraj/miniss?sort=semver&style=flat-square)
 ![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/noraj/miniss?include_prereleases&sort=semver&style=flat-square)
 
-See [build](docs/build.md) instructions.
+A pre-compiled static binary is provided only for `x86_64-linux-gnu`, see [releases](https://github.com/noraj/miniss/releases). Else read the [build](docs/build.md) instructions.
+
+## Install
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/miniss.svg)](https://repology.org/project/miniss/versions)
+
+See [install](docs/install.md) instructions.
 
 ## Usage
 
@@ -51,7 +59,7 @@ Project:
 ## Features
 
 - Information displayed:
-  - local address, remote address, state, username, uid
+  - type of socket, local address, remote address, state, username, uid
 - Type of sockets:
   - [x] TCP
   - [x] UDP
@@ -61,12 +69,14 @@ Project:
 
 ## Documentation
 
+Documentation homepage: https://noraj.github.io/miniss/
+
 [![Library documentation](https://img.shields.io/badge/doc-library-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/lib-doc/Miniss.html)
 [![User documentation - Build](https://img.shields.io/badge/doc-build-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/build)
+[![User documentation - Install](https://img.shields.io/badge/doc-install-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/install)
 [![User documentation - Changelog](https://img.shields.io/badge/doc-changelog-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/CHANGELOG)
 [![Developer documentation - Contributing](https://img.shields.io/badge/doc-contributing-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/creating)
 [![Developer documentation - Development](https://img.shields.io/badge/doc-development-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/development)
-[![User documentation - TODO](https://img.shields.io/badge/doc-todo-black?logo=readthedocs&logoColor=black&style=flat-square)](https://noraj.github.io/miniss/TODO)
 
 ## Author
 

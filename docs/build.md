@@ -4,6 +4,12 @@
 
 To deploy the binary on the target we need a static build.
 
+Install dependencies:
+
+```
+$ shards install --production
+```
+
 As the [Crystal documentations](https://crystal-lang.org/reference/1.7/man/crystal/index.html#creating-a-statically-linked-executable) says:
 
 > Building fully statically linked executables is currently only supported on Alpine Linux.
@@ -61,6 +67,14 @@ $ ldd bin/miniss-x86_64-pc-linux-gnu
 
 If you like `miniss` very much and want to use it on your system as well.
 
+Install dependencies:
+
+```
+$ shards install --production
+```
+
+Build:
+
 ```
 $ crystal build src/miniss.cr --release --no-debug -o bin/miniss
 $ shards build --production --release --no-debug
@@ -101,6 +115,8 @@ cc miniss-aarch64-linux-musl.o -o miniss-aarch64-linux-musl -rdynamic -static -L
 ```
 
 ### ARM 32-bit Linux (GNU libc, hardfloat)
+
+Dependencies Debian 11: `apt install libpcre3-dev libgc-dev libevent-dev`
 
 ```
 cc miniss-arm-linux-gnueabihf.o -o miniss-arm-linux-gnueabihf -rdynamic -static -L/usr/lib/crystal -lpcre -lm -lgc -lpthread -levent -lpthread -ldl
