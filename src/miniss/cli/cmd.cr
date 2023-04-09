@@ -71,15 +71,18 @@ module Miniss::Cli
     Colorize.enabled = false if args["--no-color"]
     puts args if args["--debug"]
     # if no args, display everything
-    display = { :tcp => true, :udp => true, :ipv4 => true, :ipv6 => true }
+    display = {:tcp => true, :udp => true, :ipv4 => true, :ipv6 => true}
+    # arguments are filters, hide the opposite of what is asked
     display[:tcp] = false if args["--udp"]
     display[:udp] = false if args["--tcp"]
     display[:ipv6] = false if args["--ipv4"]
     display[:ipv4] = false if args["--ipv6"]
     sockets = Miniss::Sockets.new
-    just = find_max_just(sockets).values
+    just = find_max_just(sockets).values # calculate justifications
+    # display headers
     headers = "type".ljust(just[0]) + "local address".ljust(just[1]) + "remote address".ljust(just[2]) + "state".ljust(just[3]) + "username (uid)"
     puts headers.colorize.bold
+    # display sockets
     sockets.all.each do |so|
       if ((so.type == :tcp && display[:tcp]) && ((so.ipv == 4 && display[:ipv4]) || (so.ipv == 6 && display[:ipv6]))) || ((so.type == :udp && display[:udp]) && ((so.ipv == 4 && display[:ipv4]) || (so.ipv == 6 && display[:ipv6])))
         color_type = so.type == :tcp ? :light_magenta : :light_cyan

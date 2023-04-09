@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.6.2">
+<meta name="generator" content="Crystal Docs 1.7.2">
 <meta name="crystal_docs.project_version" content="master-dev">
 <meta name="crystal_docs.project_name" content="miniss">
 
@@ -66,6 +66,11 @@
       
     </li>
   
+  <li class=" " data-id="miniss/Miniss/Sockets" data-name="miniss::sockets">
+      <a href="../Miniss/Sockets.html">Sockets</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -107,8 +112,7 @@ so.parse_line(line)
 so.laddr <span class="c"># =&gt; &quot;127.0.0.53:53&quot;</span>
 so.state <span class="c"># =&gt; &quot;LISTEN&quot;</span>
 so.uname <span class="c"># =&gt; &quot;systemd-resolve&quot;</span>
-so.uid <span class="c"># =&gt; 980</span></code></pre>
-<p><span class="flag orange">TODO</span>  IPv6 and UDP support.</p>
+so.uid   <span class="c"># =&gt; 980</span></code></pre>
 
 
 
@@ -197,9 +201,9 @@ so.uid <span class="c"># =&gt; 980</span></code></pre>
       </li>
     
       <li class="entry-summary">
-        <a href="#parse_line%28line%29-instance-method" class="signature"><strong>#parse_line</strong>(line)</a>
+        <a href="#parse_line%28line%3AString%29%3ANil-instance-method" class="signature"><strong>#parse_line</strong>(line : String) : Nil</a>
         
-          <div class="summary"><p>Parse a socket <em>line</em> from <code>/proc/net/tcp</code> and set <code><a href="../Miniss/Socket.html">Socket</a></code> instance properties.</p></div>
+          <div class="summary"><p>Parse a socket <em>line</em> from <code>/proc/net/XXX</code> and set <code><a href="../Miniss/Socket.html">Socket</a></code> instance properties.</p></div>
         
       </li>
     
@@ -398,18 +402,17 @@ so.uid <span class="c"># =&gt; 980</span></code></pre>
       </div>
     </div>
   
-    <div class="entry-detail" id="parse_line(line)-instance-method">
+    <div class="entry-detail" id="parse_line(line:String):Nil-instance-method">
       <div class="signature">
         
-        def <strong>parse_line</strong>(line)
+        def <strong>parse_line</strong>(line : String) : Nil
 
-        <a class="method-permalink" href="#parse_line%28line%29-instance-method">#</a>
+        <a class="method-permalink" href="#parse_line%28line%3AString%29%3ANil-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Parse a socket <em>line</em> from <code>/proc/net/tcp</code> and set <code><a href="../Miniss/Socket.html">Socket</a></code> instance properties.</p>
-<p><span class="flag yellow">WARNING</span>  supports only <code><a href="../Miniss/Socket.html#type%3ASymbol-instance-method">#type</a></code> = <code>:tcp</code> and <code><a href="../Miniss/Socket.html#ipv%3AUInt8-instance-method">#ipv</a></code> = 4 for now.</p>
+          <p>Parse a socket <em>line</em> from <code>/proc/net/XXX</code> and set <code><a href="../Miniss/Socket.html">Socket</a></code> instance properties.</p>
         </div>
       
       <br/>

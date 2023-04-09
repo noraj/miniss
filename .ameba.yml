@@ -1,2 +1,6 @@
 Excluded:
   - src/poc.cr
+
+Metrics/CyclomaticComplexity:
+  Excluded:
+    - src/miniss/cli/cmd.cr

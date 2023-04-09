@@ -33,4 +33,11 @@ describe "Miniss::Sockets" do
       sockets.udpv6.should be_a(Array(Socket))
     end
   end
+
+  describe "#all" do
+    it "returns Array(Socket)" do
+      sockets = Miniss::Sockets.new
+      sockets.all.should be_a(Array(Socket))
+    end
+  end
 end

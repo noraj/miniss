@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.6.2">
+<meta name="generator" content="Crystal Docs 1.7.2">
 <meta name="crystal_docs.project_version" content="master-dev">
 <meta name="crystal_docs.project_name" content="miniss">
 
@@ -63,6 +63,11 @@
   
   <li class=" " data-id="miniss/Miniss/Socket" data-name="miniss::socket">
       <a href="Miniss/Socket.html">Socket</a>
+      
+    </li>
+  
+  <li class=" " data-id="miniss/Miniss/Sockets" data-name="miniss::sockets">
+      <a href="Miniss/Sockets.html">Sockets</a>
       
     </li>
   
@@ -157,8 +162,19 @@
       
       <dd class="entry-const-doc">
         <p>TCP states code mapping.</p>
-<p>Used in <code><a href="Miniss/Socket.html#parse_line%28line%29-instance-method">Miniss::Socket#parse_line</a></code>.</p>
-<p><span class="flag purple">NOTE</span>  Parsed from <code>/usr/src/linux/include/net/tcp_states.h</code>.</p>
+<p>Used in <code><a href="Miniss/Socket.html#parse_line%28line%3AString%29%3ANil-instance-method">Miniss::Socket#parse_line</a></code>.</p>
+<p><span class="flag purple">NOTE</span>  Parsed from <code>/usr/src/linux/include/net/tcp_states.h</code>. I made the choice not to use the same words as <code>ss</code> (https://github.com/sivasankariit/iproute2/blob/1179ab033c31d2c67f406be5bcd5e4c0685855fe/misc/ss.c#L400-L413).</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="UDP_STATES">
+        <strong>UDP_STATES</strong> = <code><span class="t">TCP_STATES</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>UDP &quot;states&quot; (UDP is stateless) code mapping.</p>
+<p>Used in <code><a href="Miniss/Socket.html#parse_line%28line%3AString%29%3ANil-instance-method">Miniss::Socket#parse_line</a></code>.</p>
+<p><span class="flag purple">NOTE</span>  <code>sk_state</code> in <code>/usr/src/linux/include/net/udp.h</code> is always ESTABLISHED or CLOSE (<code>ss</code> shows UNCONN for unconnected).</p>
       </dd>
       
     
@@ -189,9 +205,9 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#decode_addr%28addr%29-class-method" class="signature"><strong>.decode_addr</strong>(addr)</a>
+        <a href="#decode_addr%28addr%3AString%2Cipv%3AUInt8%29%3AString-class-method" class="signature"><strong>.decode_addr</strong>(addr : String, ipv : UInt8) : String</a>
         
-          <div class="summary"><p>Returns the decoded IP (v4) address + port from hexadecimal format (low nibble) to the dotted decimal format.</p></div>
+          <div class="summary"><p>Returns the decoded IPv4 address + port from hexadecimal format (low nibble) to the dotted decimal format.</p></div>
         
       </li>
     
@@ -219,19 +235,22 @@
     Class Method Detail
   </h2>
   
-    <div class="entry-detail" id="decode_addr(addr)-class-method">
+    <div class="entry-detail" id="decode_addr(addr:String,ipv:UInt8):String-class-method">
       <div class="signature">
         
-        def self.<strong>decode_addr</strong>(addr)
+        def self.<strong>decode_addr</strong>(addr : String, ipv : UInt8) : String
 
-        <a class="method-permalink" href="#decode_addr%28addr%29-class-method">#</a>
+        <a class="method-permalink" href="#decode_addr%28addr%3AString%2Cipv%3AUInt8%29%3AString-class-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Returns the decoded IP (v4) address + port from hexadecimal format (low nibble) to the dotted decimal format.</p>
+          <p>Returns the decoded IPv4 address + port from hexadecimal format (low nibble) to the dotted decimal format.
+Returns the decoded IPv6 address + port from hexadecimal format (low nibble) to the double-dotted hexadecimal format.</p>
 <p>Example:</p>
-<pre><code class="language-crystal"><span class="t">Miniss</span>.decode_addr(<span class="s">&quot;3500007F:0035&quot;</span>) <span class="c"># =&gt; &quot;127.0.0.53:53&quot;</span></code></pre>
+<pre><code class="language-crystal"><span class="t">Miniss</span>.decode_addr(<span class="s">&quot;3500007F:0035&quot;</span>, <span class="n">4_u8</span>)                         <span class="c"># =&gt; &quot;127.0.0.53:53&quot;</span>
+<span class="t">Miniss</span>.decode_addr(<span class="s">&quot;000080FE00000000FF005450B6AD1DFE:0222&quot;</span>, <span class="n">6_u8</span>) <span class="c"># =&gt; &quot;[fe80::5054:ff:fe1d:adb6]:546&quot;</span>
+<span class="t">Miniss</span>.decode_addr(<span class="s">&quot;00000000000000000000000000000000:14E9&quot;</span>, <span class="n">6_u8</span>) <span class="c"># =&gt; &quot;[::]:5353&quot;</span></code></pre>
         </div>
       
       <br/>
