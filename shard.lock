@@ -4,3 +4,7 @@ shards:
     git: https://github.com/crystal-ameba/ameba.git
     version: 1.4.3
 
+  docopt:
+    git: https://github.com/chenkovsky/docopt.cr.git
+    version: 0.1.0+git.commit.cbfdc5f3f4d5934664d07513b1a701e1e5046b34
+

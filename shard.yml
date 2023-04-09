@@ -20,6 +20,8 @@ homepage: https://github.com/noraj/miniss
 repository: https://github.com/noraj/miniss
 
 dependencies:
+  docopt:
+    github: chenkovsky/docopt.cr
 development_dependencies:
   ameba:
     github: crystal-ameba/ameba

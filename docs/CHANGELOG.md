@@ -5,6 +5,7 @@
 - **Code**: Add UDP support.
 - **Code**: Add IPv6 support.
 - **Code**: Dynamic column width.
+- **Code**: Argument parser and colors.
 - **Quality**: Begin documenting the code.
 - **Quality**: Lint the code.
 - **Quality**: Add unit tests.

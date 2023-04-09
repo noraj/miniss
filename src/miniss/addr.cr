@@ -107,16 +107,16 @@ module Miniss
   # end
   # ```
   class Sockets
-    # All IPv4 TCP sockets
+    # Returns all IPv4 TCP sockets
     getter tcpv4 : Array(Socket)
 
-    # All IPv6 TCP sockets
+    # Returns all IPv6 TCP sockets
     getter tcpv6 : Array(Socket)
 
-    # All IPv4 UDP sockets
+    # Returns all IPv4 UDP sockets
     getter udpv4 : Array(Socket)
 
-    # All IPv6 UDP sockets
+    # Returns all IPv6 UDP sockets
     getter udpv6 : Array(Socket)
 
     # Initialize `Sockets` class.
@@ -177,6 +177,11 @@ module Miniss
         end
       end
       @udpv6 = sockets
+    end
+
+    # Returns all sockets
+    def all
+      @tcpv4 + @tcpv6 + @udpv4 + @udpv6
     end
   end
 end
