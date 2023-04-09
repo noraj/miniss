@@ -11,17 +11,41 @@
 
 The goal of **miniss** is not to reinvent the wheel but rather to offer a static binary that can be deployed by pentester or CTF players on containers or hardened environnement where the classical `ss` or `netstat` binaries have been removed.
 
-## Installation
+## Build
 
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/noraj/miniss?sort=semver&style=flat-square)
 ![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/noraj/miniss?include_prereleases&sort=semver&style=flat-square)
 
-TODO: Write installation instructions here
+See [build](docs/build.md) instructions.
 
 ## Usage
 
 ```
-./miniss
+miniss v0.0.2
+
+Usage:
+  miniss [--tcp | --udp] [--ipv4 | --ipv6] [--debug --no-color]
+  miniss -h | --help
+  miniss --version
+
+Options:
+  -u --udp      Show UDP sockets.
+  -t --tcp      Show TCP sockets.
+  -4 --ipv4     Show IPv4 sockets.
+  -6 --ipv6     Show IPv6 sockets.
+  --debug       Display arguments.
+  --no-color    Disable colorized output (NO_COLOR environment variable is respected too).
+  -h --help     Show this screen.
+  --version     Show version.
+
+Examples:
+  miniss --udp
+  miniss -t6
+
+Project:
+  author (https://pwn.by/noraj / https://twitter.com/noraj_rawsec)
+  source (https://github.com/noraj/miniss)
+  documentation (https://noraj.github.io/miniss)
 ```
 
 ## Features

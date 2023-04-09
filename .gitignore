@@ -2,7 +2,7 @@
 /lib/
 # Local binaries
 /bin/miniss
-/bin/miniss.o
+/bin/*.o
 /bin/miniss.dwarf
 # Cross compiled binaries
 /bin/miniss-*
