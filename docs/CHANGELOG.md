@@ -1,5 +1,11 @@
 # CHANGELOG
 
+- **Compatibility**: Drop Crystal 1.7 support. **Breaking changes**.
+- **Compatibility**: Add support for Crystal 1.8-1.12.
+- **Maintenance**: Update dependencies.
+- **Quality**: Fix tests & CI.
+- **Quality**: Lint the code.
+
 ## [0.0.2](https://github.com/noraj/miniss/releases/tag/0.0.2)
 
 - **Code**: Create a new `Miniss::Socket` class so sockets are objects, make the code cleaner, more concise, more modular and more reusable.

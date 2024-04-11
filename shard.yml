@@ -12,7 +12,7 @@ targets:
 executables:
   - miniss
 
-crystal: "~> 1.7.2"
+crystal: ">= 1.8, < 2.0"
 
 license: MIT
 documentation: https://github.com/noraj/miniss/tree/master/docs

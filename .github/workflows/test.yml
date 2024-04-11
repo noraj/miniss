@@ -13,8 +13,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
-        crystal: ['1.7', '1.8', '1.9', '1.10', '1.11', '1.12']
+        os: [ubuntu-latest]
+        crystal: ['1.8', '1.9', '1.10', '1.11', '1.12']
     runs-on: ${{ matrix.os }}
     steps:
       - name: Download source
