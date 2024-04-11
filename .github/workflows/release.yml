@@ -9,9 +9,9 @@ jobs:
   dist_linux:
     runs-on: ubuntu-latest
     container:
-      image: crystallang/crystal:1.7-alpine
+      image: crystallang/crystal:1.12-alpine
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Update Libs
       run: apk add --update --upgrade --no-cache --force-overwrite libxml2-dev yaml-dev
     - name: Install dependencies
