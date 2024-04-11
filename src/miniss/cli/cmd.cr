@@ -23,10 +23,10 @@ module Miniss::Cli
       raddr: "remote address".size,
       state: "state".size,
     }
-    sockets_obj.all.each do |so|
-      just[:laddr] = so.laddr.size if so.laddr.size > just[:laddr]
-      just[:raddr] = so.raddr.size if so.raddr.size > just[:raddr]
-      just[:state] = so.state.size if so.state.size > just[:state]
+    sockets_obj.all.each do |socket|
+      just[:laddr] = socket.laddr.size if socket.laddr.size > just[:laddr]
+      just[:raddr] = socket.raddr.size if socket.raddr.size > just[:raddr]
+      just[:state] = socket.state.size if socket.state.size > just[:state]
     end
     # Keep the highest value betwenn the min just size and the max attr size
     # Also add +1 so that columns are not joint
@@ -83,19 +83,19 @@ module Miniss::Cli
     headers = "type".ljust(just[0]) + "local address".ljust(just[1]) + "remote address".ljust(just[2]) + "state".ljust(just[3]) + "username (uid)"
     puts headers.colorize.bold
     # display sockets
-    sockets.all.each do |so|
-      if ((so.type == :tcp && display[:tcp]) && ((so.ipv == 4 && display[:ipv4]) || (so.ipv == 6 && display[:ipv6]))) || ((so.type == :udp && display[:udp]) && ((so.ipv == 4 && display[:ipv4]) || (so.ipv == 6 && display[:ipv6])))
-        color_type = so.type == :tcp ? :light_magenta : :light_cyan
-        type = so.type.to_s.ljust(just[0]).colorize(color_type)
-        color_ip_addr = so.ipv == 4 ? :light_red : :light_green
-        color_ip_port = so.ipv == 4 ? :light_blue : :light_yellow
-        laddr, lport = so.laddr.to_s.ljust(just[1]).reverse.split(':', 2).reverse.map(&.reverse)
+    sockets.all.each do |socket|
+      if ((socket.type == :tcp && display[:tcp]) && ((socket.ipv == 4 && display[:ipv4]) || (socket.ipv == 6 && display[:ipv6]))) || ((socket.type == :udp && display[:udp]) && ((socket.ipv == 4 && display[:ipv4]) || (socket.ipv == 6 && display[:ipv6])))
+        color_type = socket.type == :tcp ? :light_magenta : :light_cyan
+        type = socket.type.to_s.ljust(just[0]).colorize(color_type)
+        color_ip_addr = socket.ipv == 4 ? :light_red : :light_green
+        color_ip_port = socket.ipv == 4 ? :light_blue : :light_yellow
+        laddr, lport = socket.laddr.to_s.ljust(just[1]).reverse.split(':', 2).reverse.map(&.reverse)
         laddr = laddr.colorize(color_ip_addr)
         lport = lport.colorize(color_ip_port)
-        raddr, rport = so.raddr.to_s.ljust(just[2]).reverse.split(':', 2).reverse.map(&.reverse)
+        raddr, rport = socket.raddr.to_s.ljust(just[2]).reverse.split(':', 2).reverse.map(&.reverse)
         raddr = raddr.colorize(color_ip_addr)
         rport = rport.colorize(color_ip_port)
-        puts "#{type}#{laddr}:#{lport}#{raddr}:#{rport}#{so.state.ljust(just[3])}#{so.uname} (#{so.uid})"
+        puts "#{type}#{laddr}:#{lport}#{raddr}:#{rport}#{socket.state.ljust(just[3])}#{socket.uname} (#{socket.uid})"
       end
     end
   end
