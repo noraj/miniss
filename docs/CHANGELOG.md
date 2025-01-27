@@ -1,7 +1,9 @@
 # CHANGELOG
 
+## [unreleased]
+
 - **Compatibility**: Drop Crystal 1.7 support. **Breaking changes**.
-- **Compatibility**: Add support for Crystal 1.8-1.12.
+- **Compatibility**: Add support for Crystal 1.8-1.15.
 - **Maintenance**: Update dependencies.
 - **Quality**: Fix tests & CI.
 - **Quality**: Lint the code.

@@ -89,10 +89,10 @@ module Miniss::Cli
         type = socket.type.to_s.ljust(just[0]).colorize(color_type)
         color_ip_addr = socket.ipv == 4 ? :light_red : :light_green
         color_ip_port = socket.ipv == 4 ? :light_blue : :light_yellow
-        laddr, lport = socket.laddr.to_s.ljust(just[1]).reverse.split(':', 2).reverse.map(&.reverse)
+        laddr, lport = socket.laddr.to_s.ljust(just[1]).reverse.split(':', 2).reverse!.map(&.reverse)
         laddr = laddr.colorize(color_ip_addr)
         lport = lport.colorize(color_ip_port)
-        raddr, rport = socket.raddr.to_s.ljust(just[2]).reverse.split(':', 2).reverse.map(&.reverse)
+        raddr, rport = socket.raddr.to_s.ljust(just[2]).reverse.split(':', 2).reverse!.map(&.reverse)
         raddr = raddr.colorize(color_ip_addr)
         rport = rport.colorize(color_ip_port)
         puts "#{type}#{laddr}:#{lport}#{raddr}:#{rport}#{socket.state.ljust(just[3])}#{socket.uname} (#{socket.uid})"
