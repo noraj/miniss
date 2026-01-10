@@ -3,7 +3,7 @@
 ## [unreleased]
 
 - **Compatibility**: Drop Crystal 1.7 support. **Breaking changes**.
-- **Compatibility**: Add support for Crystal 1.8-1.15.
+- **Compatibility**: Add support for Crystal 1.8-1.18.
 - **Maintenance**: Update dependencies.
 - **Quality**: Fix tests & CI.
 - **Quality**: Lint the code.
