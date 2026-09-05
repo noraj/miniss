@@ -6,8 +6,8 @@ To deploy the binary on the target we need a static build.
 
 Install dependencies:
 
-```
-$ shards install --production
+```sh
+shards install --production
 ```
 
 As the [Crystal documentations](https://crystal-lang.org/reference/1.12/man/crystal/index.html#creating-a-statically-linked-executable) says:
@@ -20,17 +20,18 @@ For that purpose, the [documentation](https://crystal-lang.org/reference/1.12/gu
 
 As an example replace the local build:
 
-```
-$ crystal build src/miniss.cr --release --static --no-debug -o bin/miniss
-$ shards build --production --release --static --no-debug
+```sh
+crystal build src/miniss.cr --release --static --no-debug -o bin/miniss
+shards build --production --release --static --no-debug
 ```
 
 with
 
-```
-$ docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:1.12.1-alpine \
+```sh
+docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:1.12.1-alpine \
     crystal build src/miniss.cr --release --static --no-debug -o bin/miniss
-$ docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:1.12.1-alpine \
+
+docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:1.12.1-alpine \
     shards build --production --release --static --no-debug
 ```
 
@@ -40,27 +41,27 @@ Find your platform with `llvm-config --host-target` (examples: `x86_64-pc-linux-
 
 So change from
 
-```
-$ crystal build src/miniss.cr --release --static --no-debug -o bin/miniss --cross-compile --target x86_64-pc-linux-gnu
-$ cc bin/miniss.o -o bin/miniss -rdynamic -static --no-debug -L/home/noraj/.asdf/installs/crystal/1.12.1/bin/../lib/crystal -lpcre -lm -lgc -lpthread -levent -lrt -lpthread -ldl
+```sh
+crystal build src/miniss.cr --release --static --no-debug -o bin/miniss --cross-compile --target x86_64-pc-linux-gnu
+cc bin/miniss.o -o bin/miniss -rdynamic -static --no-debug -L/home/noraj/.asdf/installs/crystal/1.12.1/bin/../lib/crystal -lpcre -lm -lgc -lpthread -levent -lrt -lpthread -ldl
 ```
 
 to
 
-```
-$ docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:1.12.1-alpine \
+```sh
+docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:1.12.1-alpine \
     crystal build src/cli.cr --release --static --no-debug \
    -o bin/miniss-x86_64-pc-linux-gnu --cross-compile --target x86_64-pc-linux-gnu
-$ cc bin/miniss-x86_64-pc-linux-gnu.o -o bin/miniss-x86_64-pc-linux-gnu -rdynamic -static -L/usr/bin/../lib/crystal -lpcre -lm -lgc -lpthread -levent -lrt -lpthread -ldl
+cc bin/miniss-x86_64-pc-linux-gnu.o -o bin/miniss-x86_64-pc-linux-gnu -rdynamic -static -L/usr/bin/../lib/crystal -lpcre -lm -lgc -lpthread -levent -lrt -lpthread -ldl
 ```
 
 Note: the second line must be executed on the target platform.
 
 Finally, check your binary is fully static:
 
-```
-$ ldd bin/miniss-x86_64-pc-linux-gnu
-        not a dynamic executable
+```sh
+ldd bin/miniss-x86_64-pc-linux-gnu
+#        not a dynamic executable
 ```
 
 ## Dynamic
@@ -69,15 +70,15 @@ If you like `miniss` very much and want to use it on your system as well.
 
 Install dependencies:
 
-```
-$ shards install --production
+```sh
+shards install --production
 ```
 
 Build:
 
-```
-$ crystal build src/miniss.cr --release --no-debug -o bin/miniss
-$ shards build --production --release --no-debug
+```sh
+crystal build src/miniss.cr --release --no-debug -o bin/miniss
+shards build --production --release --no-debug
 ```
 
 ## Release
@@ -86,19 +87,19 @@ This we you can compile a pre-compiled object without needing Crystal, Docker or
 
 ### 64-bit Linux (kernel 2.6.18+, GNU libc)
 
-```
+```sh
 cc miniss-x86_64-linux-gnu.o -o miniss-x86_64-linux-gnu -rdynamic -static -L/usr/lib/crystal -lpcre -lm -lgc -lpthread -levent -lrt -lpthread -ldl
 ```
 
 ### ARM 64-bit Linux (GNU libc, hardfloat)
 
-```
+```sh
 cc miniss-aarch64-linux-gnu.o -o miniss-aarch64-linux-gnu -rdynamic -static -L/usr/lib/crystal -lpcre -lm -lgc -lpthread -levent -lrt -lpthread -ldl
 ```
 
 ### ARM 64-bit Linux (MUSL libc, hardfloat)
 
-```
+```sh
 cc miniss-aarch64-linux-musl.o -o miniss-aarch64-linux-musl -rdynamic -static -L/usr/lib/crystal -lpcre -lgc -levent
 ```
 
@@ -106,36 +107,36 @@ cc miniss-aarch64-linux-musl.o -o miniss-aarch64-linux-musl -rdynamic -static -L
 
 Dependencies Debian 11: `apt install libpcre3-dev libgc-dev libevent-dev`
 
-```
+```sh
 cc miniss-arm-linux-gnueabihf.o -o miniss-arm-linux-gnueabihf -rdynamic -static -L/usr/lib/crystal -lpcre -lm -lgc -lpthread -levent -lpthread -ldl
 ```
 
 ### 32-bit Linux (kernel 2.6.18+, GNU libc)
 
-```
+```sh
 cc miniss-i386-linux-gnu.o -o miniss-i386-linux-gnu -rdynamic -static -L/usr/lib/crystal -lpcre -lm -lgc -lpthread -levent -lrt -lpthread -ldl
 ```
 
 ### 32-bit Linux (MUSL libc)
 
-```
+```sh
 cc miniss-i386-linux-musl.o -o miniss-i386-linux-musl -rdynamic -static -L/usr/lib/crystal -lpcre -lgc -levent
 ```
 
 ### 64-bit Linux (MUSL libc)
 
-```
+```sh
 cc miniss-x86_64-linux-musl.o -o miniss-x86_64-linux-musl -rdynamic -static -L/usr/lib/crystal -lpcre -lgc -levent
 ```
 
 ### 64-bit OpenBSD (6.x)
 
-```
+```sh
 cc miniss-x86_64-openbsd.o -o miniss-x86_64-openbsd -rdynamic -static -L/usr/lib/crystal -lpcre -lm -lgc -lpthread -levent_extra -levent_core -lc++abi -lpthread -liconv
 ```
 
 ### 64-bit FreeBSD (12.x)
 
-```
+```sh
 cc miniss-x86_64-freebsd.o -o miniss-x86_64-freebsd -rdynamic -static -L/usr/lib/crystal -lpcre -lm -lgc-threaded -lpthread -levent -lpthread
 ```

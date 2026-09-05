@@ -4,7 +4,7 @@
 
 Regenerate the documentation
 
-```
+```sh
 crystal docs --output=docs/lib-doc
 ```
 
@@ -23,7 +23,7 @@ Ref.
 
 Run all test suites:
 
-```
+```sh
 crystal spec --order=random --error-on-warnings
 ```
 
@@ -31,3 +31,11 @@ Ref.
 
 - [Crystal doc - Testing Crystal Code](https://crystal-lang.org/reference/1.12/guides/testing.html)
 - [Crystal api - Spec](https://crystal-lang.org/api/1.12.1/Spec.html)
+
+## Running
+
+Build and execute in one command:
+
+```sh
+shards run miniss
+```

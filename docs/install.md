@@ -12,14 +12,14 @@ AUR: [miniss](https://aur.archlinux.org/packages/miniss)
 
 Manually:
 
-```
-$ git clone https://aur.archlinux.org/miniss.git
-$ cd miniss
-$ makepkg -sic
+```sh
+git clone https://aur.archlinux.org/miniss.git
+cd miniss
+makepkg -sic
 ```
 
-With an AUR helper ([Pacman wrappers](https://wiki.archlinux.org/index.php/AUR_helpers#Pacman_wrappers)), eg. pikaur:
+With an AUR helper ([Pacman wrappers](https://wiki.archlinux.org/index.php/AUR_helpers#Pacman_wrappers)), eg. yay:
 
-```
-$ pikaur -S miniss
+```sh
+yay -S miniss
 ```

@@ -3,6 +3,7 @@
 ## [unreleased]
 
 - **Code**: Add a `-l --listen` option to show only listening sockets.
+- **Code**: Support `NEW_BOUND_INACTIVE` TCP state.
 - **Compatibility**: Drop Crystal 1.7 support. **Breaking changes**.
 - **Compatibility**: Add support for Crystal 1.8-1.21.
 - **Maintenance**: Update dependencies.
