@@ -32,15 +32,16 @@ See [install](docs/install.md) instructions.
 miniss v0.0.2
 
 Usage:
-  miniss [--tcp | --udp] [--ipv4 | --ipv6] [--debug --no-color]
+  miniss [--tcp | --udp] [--ipv4 | --ipv6] [--listen --debug --no-color]
   miniss -h | --help
   miniss --version
 
 Options:
-  -u --udp      Show UDP sockets.
-  -t --tcp      Show TCP sockets.
-  -4 --ipv4     Show IPv4 sockets.
-  -6 --ipv6     Show IPv6 sockets.
+  -u --udp      Show only UDP sockets.
+  -t --tcp      Show only TCP sockets.
+  -4 --ipv4     Show only IPv4 sockets.
+  -6 --ipv6     Show only IPv6 sockets.
+  -l --listen   Show only listening sockets.
   --debug       Display arguments.
   --no-color    Disable colorized output (NO_COLOR environment variable is respected too).
   -h --help     Show this screen.
@@ -49,6 +50,7 @@ Options:
 Examples:
   miniss --udp
   miniss -t6
+  miniss --listen
 
 Project:
   author (https://pwn.by/noraj / https://twitter.com/noraj_rawsec)

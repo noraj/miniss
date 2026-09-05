@@ -40,15 +40,16 @@ module Miniss::Cli
     #{"miniss".colorize.light_magenta} v#{Miniss::VERSION.colorize.bold}
 
     #{"Usage:".colorize.light_cyan.toggle(false)}
-      miniss [--tcp | --udp] [--ipv4 | --ipv6] [--debug --no-color]
+      miniss [--tcp | --udp] [--ipv4 | --ipv6] [--listen --debug --no-color]
       miniss -h | --help
       miniss --version
 
     #{"Options:".colorize.light_cyan}
-      -u --udp      Show UDP sockets.
-      -t --tcp      Show TCP sockets.
-      -4 --ipv4     Show IPv4 sockets.
-      -6 --ipv6     Show IPv6 sockets.
+      -u --udp      Show only UDP sockets.
+      -t --tcp      Show only TCP sockets.
+      -4 --ipv4     Show only IPv4 sockets.
+      -6 --ipv6     Show only IPv6 sockets.
+      -l --listen   Show only listening sockets.
       --debug       Display arguments.
       --no-color    Disable colorized output (NO_COLOR environment variable is respected too).
       -h --help     Show this screen.
@@ -71,12 +72,14 @@ module Miniss::Cli
     Colorize.enabled = false if args["--no-color"]
     puts args if args["--debug"]
     # if no args, display everything
-    display = {:tcp => true, :udp => true, :ipv4 => true, :ipv6 => true}
+    display = {:tcp => true, :udp => true, :ipv4 => true, :ipv6 => true, :listen => false}
     # arguments are filters, hide the opposite of what is asked
     display[:tcp] = false if args["--udp"]
     display[:udp] = false if args["--tcp"]
     display[:ipv6] = false if args["--ipv4"]
     display[:ipv4] = false if args["--ipv6"]
+    # --listen is a filter, hide non-listening sockets (LISTEN for TCP, CLOSE for UDP)
+    display[:listen] = true if args["--listen"]
     sockets = Miniss::Sockets.new
     just = find_max_just(sockets).values # calculate justifications
     # display headers
@@ -84,7 +87,12 @@ module Miniss::Cli
     puts headers.colorize.bold
     # display sockets
     sockets.all.each do |socket|
-      if ((socket.type == :tcp && display[:tcp]) && ((socket.ipv == 4 && display[:ipv4]) || (socket.ipv == 6 && display[:ipv6]))) || ((socket.type == :udp && display[:udp]) && ((socket.ipv == 4 && display[:ipv4]) || (socket.ipv == 6 && display[:ipv6])))
+      type_ok = (socket.type == :tcp && display[:tcp]) || (socket.type == :udp && display[:udp])
+      ipv_ok = (socket.ipv == 4 && display[:ipv4]) || (socket.ipv == 6 && display[:ipv6])
+      # a listening socket is LISTEN for TCP but CLOSE for UDP
+      listen_state = socket.type == :udp ? "CLOSE" : "LISTEN"
+      listen_ok = !display[:listen] || socket.state == listen_state
+      if type_ok && ipv_ok && listen_ok
         color_type = socket.type == :tcp ? :light_magenta : :light_cyan
         type = socket.type.to_s.ljust(just[0]).colorize(color_type)
         color_ip_addr = socket.ipv == 4 ? :light_red : :light_green

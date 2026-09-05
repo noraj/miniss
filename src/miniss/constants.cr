@@ -21,6 +21,7 @@ module Miniss
     "0A" => "LISTEN",
     "0B" => "CLOSING",
     "0C" => "NEW_SYN_RECV",
+    "0D" => "NEW_BOUND_INACTIVE",
   }
 
   # UDP "states" (UDP is stateless) code mapping.

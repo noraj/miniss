@@ -2,13 +2,14 @@
 
 ## [unreleased]
 
+- **Code**: Add a `-l --listen` option to show only listening sockets.
 - **Compatibility**: Drop Crystal 1.7 support. **Breaking changes**.
-- **Compatibility**: Add support for Crystal 1.8-1.18.
+- **Compatibility**: Add support for Crystal 1.8-1.21.
 - **Maintenance**: Update dependencies.
 - **Quality**: Fix tests & CI.
 - **Quality**: Lint the code.
 
-## [0.0.2](https://github.com/noraj/miniss/releases/tag/0.0.2)
+## [0.0.2](https://github.com/noraj/miniss/releases/tag/0.0.2) - 2023-04-09
 
 - **Code**: Create a new `Miniss::Socket` class so sockets are objects, make the code cleaner, more concise, more modular and more reusable.
 - **Code**: Create a new `Miniss::Sockets` to handle the enumeration of `Miniss::Socket`.
@@ -22,6 +23,6 @@
 - **Quality**: Add more typing.
 - **Branding**: Add a logo.
 
-## [0.0.1](https://github.com/noraj/miniss/releases/tag/0.0.1)
+## [0.0.1](https://github.com/noraj/miniss/releases/tag/0.0.1) - 2023-03-03
 
 - Early alpha release.
