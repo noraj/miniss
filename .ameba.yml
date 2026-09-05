@@ -1,5 +1,6 @@
 Excluded:
   - src/poc.cr
+  - lib/**/*.cr
 
 Metrics/CyclomaticComplexity:
   Excluded:

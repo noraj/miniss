@@ -37,33 +37,33 @@ module Miniss::Cli
   def self.argparser
     # disable colors on usage while https://github.com/chenkovsky/docopt.cr/issues/9
     doc = <<-DOCOPT
-    #{"miniss".colorize.light_magenta} v#{Miniss::VERSION.colorize.bold}
+      #{"miniss".colorize.light_magenta} v#{Miniss::VERSION.colorize.bold}
 
-    #{"Usage:".colorize.light_cyan.toggle(false)}
-      miniss [--tcp | --udp] [--ipv4 | --ipv6] [--listen --debug --no-color]
-      miniss -h | --help
-      miniss --version
+      #{"Usage:".colorize.light_cyan.toggle(false)}
+        miniss [--tcp | --udp] [--ipv4 | --ipv6] [--listen --debug --no-color]
+        miniss -h | --help
+        miniss --version
 
-    #{"Options:".colorize.light_cyan}
-      -u --udp      Show only UDP sockets.
-      -t --tcp      Show only TCP sockets.
-      -4 --ipv4     Show only IPv4 sockets.
-      -6 --ipv6     Show only IPv6 sockets.
-      -l --listen   Show only listening sockets.
-      --debug       Display arguments.
-      --no-color    Disable colorized output (NO_COLOR environment variable is respected too).
-      -h --help     Show this screen.
-      --version     Show version.
+      #{"Options:".colorize.light_cyan}
+        -u --udp      Show only UDP sockets.
+        -t --tcp      Show only TCP sockets.
+        -4 --ipv4     Show only IPv4 sockets.
+        -6 --ipv6     Show only IPv6 sockets.
+        -l --listen   Show only listening sockets.
+        --debug       Display arguments.
+        --no-color    Disable colorized output (NO_COLOR environment variable is respected too).
+        -h --help     Show this screen.
+        --version     Show version.
 
-    #{"Examples:".colorize.light_cyan}
-      miniss --udp
-      miniss -t6
+      #{"Examples:".colorize.light_cyan}
+        miniss --udp
+        miniss -t6
 
-    #{"Project:".colorize.light_cyan}
-      #{"author".colorize.underline} (https://pwn.by/noraj / https://twitter.com/noraj_rawsec)
-      #{"source".colorize.underline} (https://github.com/noraj/miniss)
-      #{"documentation".colorize.underline} (https://noraj.github.io/miniss)
-    DOCOPT
+      #{"Project:".colorize.light_cyan}
+        #{"author".colorize.underline} (https://pwn.by/noraj / https://twitter.com/noraj_rawsec)
+        #{"source".colorize.underline} (https://github.com/noraj/miniss)
+        #{"documentation".colorize.underline} (https://noraj.github.io/miniss)
+      DOCOPT
     Docopt.docopt(doc, version: Miniss::VERSION)
   end
 
