@@ -3,6 +3,8 @@
 ## [unreleased]
 
 - **Code**: Add a `-l --listen` option to show only listening sockets.
+- **Code**: Add a `-p --pid PID` option to show the sockets in the namespace of a given process ID by parsing `/proc/PID/net`
+- **Code**: `Miniss::Sockets` now accepts a custom base folder, missing sockets files are skipped)
 - **Code**: Support `NEW_BOUND_INACTIVE` TCP state.
 - **Compatibility**: Drop Crystal 1.7 support. **Breaking changes**.
 - **Compatibility**: Add support for Crystal 1.8-1.21.

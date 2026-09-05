@@ -96,17 +96,21 @@ module Miniss
   end
 
   # Sockets object has properties containing arrays of `Sockets` from the parsed
-  # `/proc/net/xxx` files.
+  # sockets files of a base folder (default: `/proc/net`).
   #
   # Example:
   #
   # ```
-  # sockets = Miniss::Sockets.new
+  # sockets = Miniss::Sockets.new                   # parse `/proc/net`
+  # sockets = Miniss::Sockets.new("/proc/1234/net") # parse the net folder of a given process
   # sockets.tcpv4.each do |so|
   #   puts "#{so.laddr} <-> #{so.raddr}"
   # end
   # ```
   class Sockets
+    # Base folder containing the sockets files (`tcp`, `tcp6`, `udp`, `udp6`).
+    getter base : String
+
     # Returns all IPv4 TCP sockets
     getter tcpv4 : Array(Socket)
 
@@ -120,68 +124,59 @@ module Miniss
     getter udpv6 : Array(Socket)
 
     # Initialize `Sockets` class.
-    def initialize
+    #
+    # By default sockets files are parsed from `/proc/net` but another _base_ folder can be set, e.g. `/proc/1234/net` to list the sockets of a given process ID.
+    #
+    # NOTE: Missing or unreadable sockets files (not every process exposes all of `tcp`, `tcp6`, `udp`, `udp6`) are silently skipped.
+    def initialize(base : String = "/proc/net")
+      @base = base
       @tcpv4 = parse_tcpv4
       @tcpv6 = parse_tcpv6
       @udpv4 = parse_udpv4
       @udpv6 = parse_udpv6
     end
 
-    # Parse all IPv4 TCP sockets from `/proc/net/tcp`.
+    # Parse all IPv4 TCP sockets from `<base>/tcp` (e.g. `/proc/net/tcp`).
     def parse_tcpv4 : Array(Socket)
-      sockets = Array(Socket).new
-      File.read_lines("/proc/net/tcp").each_with_index do |line, i|
-        so = Miniss::Socket.new(:tcp, 4_u8)
-        unless i == 0 # skip headers
-          so.parse_line(line)
-          sockets << so
-        end
-      end
-      @tcpv4 = sockets
+      @tcpv4 = parse_sockets_file("#{@base}/tcp", :tcp, 4_u8)
     end
 
-    # Parse all IPv6 TCP sockets from `/proc/net/tcp6`.
+    # Parse all IPv6 TCP sockets from `<base>/tcp6` (e.g. `/proc/net/tcp6`).
     def parse_tcpv6 : Array(Socket)
-      sockets = Array(Socket).new
-      File.read_lines("/proc/net/tcp6").each_with_index do |line, i|
-        so = Miniss::Socket.new(:tcp, 6_u8)
-        unless i == 0 # skip headers
-          so.parse_line(line)
-          sockets << so
-        end
-      end
-      @tcpv6 = sockets
+      @tcpv6 = parse_sockets_file("#{@base}/tcp6", :tcp, 6_u8)
     end
 
-    # Parse all IPv4 UDP sockets from `/proc/net/udp`.
+    # Parse all IPv4 UDP sockets from `<base>/udp` (e.g. `/proc/net/udp`).
     def parse_udpv4 : Array(Socket)
-      sockets = Array(Socket).new
-      File.read_lines("/proc/net/udp").each_with_index do |line, i|
-        so = Miniss::Socket.new(:udp, 4_u8)
-        unless i == 0 # skip headers
-          so.parse_line(line)
-          sockets << so
-        end
-      end
-      @udpv4 = sockets
+      @udpv4 = parse_sockets_file("#{@base}/udp", :udp, 4_u8)
     end
 
-    # Parse all IPv6 UDP sockets from `/proc/net/udp6`.
+    # Parse all IPv6 UDP sockets from `<base>/udp6` (e.g. `/proc/net/udp6`).
     def parse_udpv6 : Array(Socket)
-      sockets = Array(Socket).new
-      File.read_lines("/proc/net/udp6").each_with_index do |line, i|
-        so = Miniss::Socket.new(:udp, 6_u8)
-        unless i == 0 # skip headers
-          so.parse_line(line)
-          sockets << so
-        end
-      end
-      @udpv6 = sockets
+      @udpv6 = parse_sockets_file("#{@base}/udp6", :udp, 6_u8)
     end
 
     # Returns all sockets
     def all
       @tcpv4 + @tcpv6 + @udpv4 + @udpv6
+    end
+
+    # Parse all sockets of a given _type_ and IP version _ipv_ from a `/proc/net/xxx` like _file_.
+    private def parse_sockets_file(file : String, type : Symbol, ipv : UInt8) : Array(Socket)
+      sockets = Array(Socket).new
+      begin
+        lines = File.read_lines(file)
+      rescue File::Error # missing or unreadable sockets file (e.g. some files may not exist in /proc/PID/net)
+        return sockets
+      end
+      lines.each_with_index do |line, i|
+        unless i == 0 # skip headers
+          so = Miniss::Socket.new(type, ipv)
+          so.parse_line(line)
+          sockets << so
+        end
+      end
+      sockets
     end
   end
 end

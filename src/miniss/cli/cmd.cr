@@ -40,7 +40,7 @@ module Miniss::Cli
       #{"miniss".colorize.light_magenta} v#{Miniss::VERSION.colorize.bold}
 
       #{"Usage:".colorize.light_cyan.toggle(false)}
-        miniss [--tcp | --udp] [--ipv4 | --ipv6] [--listen --debug --no-color]
+        miniss [--tcp | --udp] [--ipv4 | --ipv6] [--pid PID] [--listen --debug --no-color]
         miniss -h | --help
         miniss --version
 
@@ -50,6 +50,7 @@ module Miniss::Cli
         -4 --ipv4     Show only IPv4 sockets.
         -6 --ipv6     Show only IPv6 sockets.
         -l --listen   Show only listening sockets.
+        -p --pid PID  Show sockets in the namespace of a given process ID.
         --debug       Display arguments.
         --no-color    Disable colorized output (NO_COLOR environment variable is respected too).
         -h --help     Show this screen.
@@ -58,6 +59,7 @@ module Miniss::Cli
       #{"Examples:".colorize.light_cyan}
         miniss --udp
         miniss -t6
+        miniss --pid 1234
 
       #{"Project:".colorize.light_cyan}
         #{"author".colorize.underline} (https://pwn.by/noraj / https://twitter.com/noraj_rawsec)
@@ -80,7 +82,10 @@ module Miniss::Cli
     display[:ipv4] = false if args["--ipv6"]
     # --listen is a filter, hide non-listening sockets (LISTEN for TCP, CLOSE for UDP)
     display[:listen] = true if args["--listen"]
-    sockets = Miniss::Sockets.new
+    # --pid parses the sockets files of the net folder of a given process instead of the global ones
+    pid = args["--pid"]
+    base = pid ? "/proc/#{pid}/net" : "/proc/net"
+    sockets = Miniss::Sockets.new(base)
     just = find_max_just(sockets).values # calculate justifications
     # display headers
     headers = "type".ljust(just[0]) + "local address".ljust(just[1]) + "remote address".ljust(just[2]) + "state".ljust(just[3]) + "username (uid)"
