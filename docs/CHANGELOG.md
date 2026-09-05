@@ -7,6 +7,7 @@
 - **Compatibility**: Drop Crystal 1.7 support. **Breaking changes**.
 - **Compatibility**: Add support for Crystal 1.8-1.21.
 - **Maintenance**: Update dependencies.
+- **Maintenance**: Update workflows.
 - **Quality**: Fix tests & CI.
 - **Quality**: Lint the code.
 

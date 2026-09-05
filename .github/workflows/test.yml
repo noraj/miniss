@@ -14,13 +14,13 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        crystal: ['1.8', '1.9', '1.10', '1.11', '1.12', '1.13', '1.14', '1.15', '1.16', '1.17', '1.18']
+        crystal: ['1.8', '1.9', '1.10', '1.11', '1.12', '1.13', '1.14', '1.15', '1.16', '1.17', '1.18', '1.19', '1.20', '1.21']
     runs-on: ${{ matrix.os }}
     steps:
       - name: Download source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7 # https://github.com/actions/checkout
       - name: Install Crystal
-        uses: crystal-lang/install-crystal@v1
+        uses: crystal-lang/install-crystal@v1 # https://github.com/crystal-lang/install-crystal
         with:
           crystal: ${{ matrix.crystal }}
       - name: Install shards
