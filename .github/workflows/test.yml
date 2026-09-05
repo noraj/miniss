@@ -26,8 +26,8 @@ jobs:
       - name: Install shards
         run: shards install --ignore-crystal-version
       - name: Lint
-        run: ./bin/ameba
+        run: ./lib/ameba/bin/ameba.cr
       - name: Run tests
         run: crystal spec --order=random --error-on-warnings
       - name: Build
-        run: shards build
+        run: shards build miniss

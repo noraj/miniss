@@ -17,7 +17,7 @@ Ref.
 
 [ameba](https://github.com/crystal-ameba/ameba) is used as a linter.
 
-`shards install` will install it under `./bin/ameba`.
+`shards build ameba` will install it under `./bin/ameba`, else run `lib/ameba/bin/ameba.cr` directly.
 
 ## Test
 

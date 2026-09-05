@@ -8,6 +8,8 @@ authors:
 targets:
   miniss:
     main: src/cli.cr
+  ameba:
+    main: lib/ameba/bin/ameba.cr
 
 executables:
   - miniss
@@ -25,4 +27,4 @@ dependencies:
 development_dependencies:
   ameba:
     github: crystal-ameba/ameba
-    version: ~> 1.6.0
+    version: ~> 1.7.0
