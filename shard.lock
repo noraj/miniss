@@ -6,5 +6,5 @@ shards:
 
   docopt:
     git: https://github.com/chenkovsky/docopt.cr.git
-    version: 0.2.0+git.commit.620fce4f334ff15d7321e5ecb6665ad258fe9297
+    version: 0.2.1+git.commit.59d798cda314ec0fe53d257d17c4e8f69ca0961d
 
