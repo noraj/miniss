@@ -26,6 +26,7 @@ jobs:
       - name: Install shards
         run: shards install --ignore-crystal-version
       - name: Lint
+        if: contains(fromJSON('["1.19", "1.20", "1.21"]'), matrix.crystal) # Ameba dropped support for older versions
         run: ./lib/ameba/bin/ameba.cr
       - name: Run tests
         run: crystal spec --order=random --error-on-warnings
