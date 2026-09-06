@@ -10,8 +10,8 @@ crystal docs --output=docs/lib-doc
 
 Ref.
 
-- [Crystal doc - Documenting code](https://crystal-lang.org/reference/1.12/syntax_and_semantics/documenting_code.html)
-- [Crystal doc - Using the compiler `crystal docs`](https://crystal-lang.org/reference/1.12/man/crystal/#crystal-docs)
+- [Crystal doc - Documenting code](https://crystal-lang.org/reference/1.21/syntax_and_semantics/documenting_code.html)
+- [Crystal doc - Using the compiler `crystal docs`](https://crystal-lang.org/reference/1.21/man/crystal/#crystal-docs)
 
 ## Linting
 
@@ -29,8 +29,8 @@ crystal spec --order=random --error-on-warnings
 
 Ref.
 
-- [Crystal doc - Testing Crystal Code](https://crystal-lang.org/reference/1.12/guides/testing.html)
-- [Crystal api - Spec](https://crystal-lang.org/api/1.12.1/Spec.html)
+- [Crystal doc - Testing Crystal Code](https://crystal-lang.org/reference/1.21/guides/testing.html)
+- [Crystal api - Spec](https://crystal-lang.org/api/1.21.0/Spec.html)
 
 ## Running
 

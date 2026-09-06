@@ -10,11 +10,11 @@ Install dependencies:
 shards install --production
 ```
 
-As the [Crystal documentations](https://crystal-lang.org/reference/1.12/man/crystal/index.html#creating-a-statically-linked-executable) says:
+As the [Crystal documentations](https://crystal-lang.org/reference/1.21/man/crystal/index.html#creating-a-statically-linked-executable) says:
 
 > Building fully statically linked executables is currently only supported on Alpine Linux.
 
-For that purpose, the [documentation](https://crystal-lang.org/reference/1.12/guides/static_linking.html#musl-libc) recommends using `musl-libc`:
+For that purpose, the [documentation](https://crystal-lang.org/reference/1.21/guides/static_linking.html#musl-libc) recommends using `musl-libc`:
 
 > Official [Docker Images based on Alpine Linux](https://crystal-lang.org/2020/02/02/alpine-based-docker-images.html) are available on Docker Hub at [crystallang/crystal](https://hub.docker.com/r/crystallang/crystal/). The latest release is tagged as crystallang/crystal:latest-alpine.
 
@@ -22,34 +22,34 @@ As an example replace the local build:
 
 ```sh
 crystal build src/miniss.cr --release --static --no-debug -o bin/miniss
-shards build --production --release --static --no-debug
+shards build --production --release --static --no-debug miniss
 ```
 
 with
 
 ```sh
-docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:1.12.1-alpine \
+docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:1.21.0-alpine \
     crystal build src/miniss.cr --release --static --no-debug -o bin/miniss
 
-docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:1.12.1-alpine \
-    shards build --production --release --static --no-debug
+docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:1.21.0-alpine \
+    shards build --production --release --static --no-debug miniss
 ```
 
-Since you are cross-compiling from a docker container, it would be wiser to ensure to provide the correct [cross compilation flags](https://crystal-lang.org/reference/1.12/syntax_and_semantics/cross-compilation.html).
+Since you are cross-compiling from a docker container, it would be wiser to ensure to provide the correct [cross compilation flags](https://crystal-lang.org/reference/1.21/syntax_and_semantics/cross-compilation.html).
 
-Find your platform with `llvm-config --host-target` (examples: `x86_64-pc-linux-gnu` on a modern Linux host) on your host or the target (see [platform support](https://crystal-lang.org/reference/1.12/syntax_and_semantics/platform_support.html) and [LLVM - Cross-compilation using Clang](https://clang.llvm.org/docs/CrossCompilation.html)).
+Find your platform with `llvm-config --host-target` (examples: `x86_64-pc-linux-gnu` on a modern Linux host) on your host or the target (see [platform support](https://crystal-lang.org/reference/1.21/syntax_and_semantics/platform_support.html) and [LLVM - Cross-compilation using Clang](https://clang.llvm.org/docs/CrossCompilation.html)).
 
 So change from
 
 ```sh
 crystal build src/miniss.cr --release --static --no-debug -o bin/miniss --cross-compile --target x86_64-pc-linux-gnu
-cc bin/miniss.o -o bin/miniss -rdynamic -static --no-debug -L/home/noraj/.asdf/installs/crystal/1.12.1/bin/../lib/crystal -lpcre -lm -lgc -lpthread -levent -lrt -lpthread -ldl
+cc bin/miniss.o -o bin/miniss -rdynamic -static --no-debug -L/home/noraj/.asdf/installs/crystal/1.21.0/bin/../lib/crystal -lpcre -lm -lgc -lpthread -levent -lrt -lpthread -ldl
 ```
 
 to
 
 ```sh
-docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:1.12.1-alpine \
+docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:1.21.0-alpine \
     crystal build src/cli.cr --release --static --no-debug \
    -o bin/miniss-x86_64-pc-linux-gnu --cross-compile --target x86_64-pc-linux-gnu
 cc bin/miniss-x86_64-pc-linux-gnu.o -o bin/miniss-x86_64-pc-linux-gnu -rdynamic -static -L/usr/bin/../lib/crystal -lpcre -lm -lgc -lpthread -levent -lrt -lpthread -ldl
@@ -62,6 +62,19 @@ Finally, check your binary is fully static:
 ```sh
 ldd bin/miniss-x86_64-pc-linux-gnu
 #        not a dynamic executable
+```
+
+Static builds than can be made 100% with docker:
+
+```sh
+# x86_64-linux-musl
+docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:latest-alpine \
+    crystal build src/cli.cr --release --static --no-debug \
+   -o bin/miniss-x86_64-linux-musl --target x86_64-linux-musl
+# x86_64-linux-gnu
+docker run --rm -it -v $PWD:/workspace -w /workspace crystallang/crystal:latest \
+    crystal build src/cli.cr --release --static --no-debug \
+   -o bin/miniss-x86_64-linux-gnu --target x86_64-linux-gnu
 ```
 
 ## Dynamic

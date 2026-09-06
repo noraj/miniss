@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.7.2">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.20.3">
 <meta name="crystal_docs.project_version" content="master-dev">
 <meta name="crystal_docs.project_name" content="miniss">
 
@@ -22,9 +23,14 @@
 
 <svg class="hidden">
   <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
   </symbol>
 </svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
@@ -85,7 +91,9 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Miniss::Sockets
+  <span class="kind">
+    class
+  </span> Miniss::<wbr>Sockets
 
 </h1>
 
@@ -105,12 +113,15 @@
   </h2>
 
   <p>Sockets object has properties containing arrays of <code><a href="../Miniss/Sockets.html">Sockets</a></code> from the parsed
-<code>/proc/net/xxx</code> files.</p>
+sockets files of a base folder (default: <code>/proc/net</code>).</p>
 <p>Example:</p>
-<pre><code class="language-crystal">sockets <span class="o">=</span> <span class="t">Miniss</span><span class="t">::</span><span class="t">Sockets</span>.new
+<pre><code class="language-crystal">sockets <span class="o">=</span> <span class="t">Miniss</span><span class="t">::</span><span class="t">Sockets</span>.new                   <span class="c"># parse `/proc/net`</span>
+sockets <span class="o">=</span> <span class="t">Miniss</span><span class="t">::</span><span class="t">Sockets</span>.new(<span class="s">&quot;/proc/1234/net&quot;</span>) <span class="c"># parse the net folder of a given process</span>
 sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span class="o">|</span>
   puts <span class="s">&quot;</span><span class="i">#{</span>so.laddr<span class="i">}</span><span class="s"> &lt;-&gt; </span><span class="i">#{</span>so.raddr<span class="i">}</span><span class="s">&quot;</span>
 <span class="k">end</span></code></pre>
+
+
 
 
 
@@ -144,6 +155,7 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
 
 
 
+  
   <h2>
     <a id="constructors" class="anchor" href="#constructors">
   <svg class="octicon-link" aria-hidden="true">
@@ -155,7 +167,7 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        <a href="#new%28base%3AString%3D%22/proc/net%22%29-class-method" class="signature"><strong>.new</strong>(base : String = <span class="s">&quot;/proc/net&quot;</span>)</a>
         
           <div class="summary"><p>Initialize <code><a href="../Miniss/Sockets.html">Sockets</a></code> class.</p></div>
         
@@ -164,9 +176,11 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
   </ul>
 
 
+  
 
+  
 
-
+  
   <h2>
     <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
   <svg class="octicon-link" aria-hidden="true">
@@ -185,30 +199,37 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
       </li>
     
       <li class="entry-summary">
+        <a href="#base%3AString-instance-method" class="signature"><strong>#base</strong> : String</a>
+        
+          <div class="summary"><p>Base folder containing the sockets files (<code>tcp</code>, <code>tcp6</code>, <code>udp</code>, <code>udp6</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#parse_tcpv4%3AArray%28Socket%29-instance-method" class="signature"><strong>#parse_tcpv4</strong> : Array(Socket)</a>
         
-          <div class="summary"><p>Parse all IPv4 TCP sockets from <code>/proc/net/tcp</code>.</p></div>
+          <div class="summary"><p>Parse all IPv4 TCP sockets from <code>&lt;base&gt;/tcp</code> (e.g.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#parse_tcpv6%3AArray%28Socket%29-instance-method" class="signature"><strong>#parse_tcpv6</strong> : Array(Socket)</a>
         
-          <div class="summary"><p>Parse all IPv6 TCP sockets from <code>/proc/net/tcp6</code>.</p></div>
+          <div class="summary"><p>Parse all IPv6 TCP sockets from <code>&lt;base&gt;/tcp6</code> (e.g.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#parse_udpv4%3AArray%28Socket%29-instance-method" class="signature"><strong>#parse_udpv4</strong> : Array(Socket)</a>
         
-          <div class="summary"><p>Parse all IPv4 UDP sockets from <code>/proc/net/udp</code>.</p></div>
+          <div class="summary"><p>Parse all IPv4 UDP sockets from <code>&lt;base&gt;/udp</code> (e.g.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#parse_udpv6%3AArray%28Socket%29-instance-method" class="signature"><strong>#parse_udpv6</strong> : Array(Socket)</a>
         
-          <div class="summary"><p>Parse all IPv6 UDP sockets from <code>/proc/net/udp6</code>.</p></div>
+          <div class="summary"><p>Parse all IPv6 UDP sockets from <code>&lt;base&gt;/udp6</code> (e.g.</p></div>
         
       </li>
     
@@ -244,33 +265,37 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
 
 
 
+  <div class="methods-inherited">
+    
+      
 
 
-<div class="methods-inherited">
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
   
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-</div>
-
-
   <h2>
     <a id="constructor-detail" class="anchor" href="#constructor-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -280,17 +305,19 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new-class-method">
+    <div class="entry-detail" id="new(base:String=&quot;/proc/net&quot;)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>
+        def self.<strong>new</strong>(base : String = <span class="s">&quot;/proc/net&quot;</span>)
 
-        <a class="method-permalink" href="#new-class-method">#</a>
+        <a class="method-permalink" href="#new%28base%3AString%3D%22/proc/net%22%29-class-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Initialize <code><a href="../Miniss/Sockets.html">Sockets</a></code> class.</p>
+<p>By default sockets files are parsed from <code>/proc/net</code> but another <em>base</em> folder can be set, e.g. <code>/proc/1234/net</code> to list the sockets of a given process ID.</p>
+<p><span class="flag purple">NOTE</span>  Missing or unreadable sockets files (not every process exposes all of <code>tcp</code>, <code>tcp6</code>, <code>udp</code>, <code>udp6</code>) are silently skipped.</p>
         </div>
       
       <br/>
@@ -301,9 +328,11 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
   
 
 
+  
 
+  
 
-
+  
   <h2>
     <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -332,6 +361,25 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
       </div>
     </div>
   
+    <div class="entry-detail" id="base:String-instance-method">
+      <div class="signature">
+        
+        def <strong>base</strong> : String
+
+        <a class="method-permalink" href="#base%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Base folder containing the sockets files (<code>tcp</code>, <code>tcp6</code>, <code>udp</code>, <code>udp6</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="parse_tcpv4:Array(Socket)-instance-method">
       <div class="signature">
         
@@ -342,7 +390,7 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
       
         <div class="doc">
           
-          <p>Parse all IPv4 TCP sockets from <code>/proc/net/tcp</code>.</p>
+          <p>Parse all IPv4 TCP sockets from <code>&lt;base&gt;/tcp</code> (e.g. <code>/proc/net/tcp</code>).</p>
         </div>
       
       <br/>
@@ -361,7 +409,7 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
       
         <div class="doc">
           
-          <p>Parse all IPv6 TCP sockets from <code>/proc/net/tcp6</code>.</p>
+          <p>Parse all IPv6 TCP sockets from <code>&lt;base&gt;/tcp6</code> (e.g. <code>/proc/net/tcp6</code>).</p>
         </div>
       
       <br/>
@@ -380,7 +428,7 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
       
         <div class="doc">
           
-          <p>Parse all IPv4 UDP sockets from <code>/proc/net/udp</code>.</p>
+          <p>Parse all IPv4 UDP sockets from <code>&lt;base&gt;/udp</code> (e.g. <code>/proc/net/udp</code>).</p>
         </div>
       
       <br/>
@@ -399,7 +447,7 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
       
         <div class="doc">
           
-          <p>Parse all IPv6 UDP sockets from <code>/proc/net/udp6</code>.</p>
+          <p>Parse all IPv6 UDP sockets from <code>&lt;base&gt;/udp6</code> (e.g. <code>/proc/net/udp6</code>).</p>
         </div>
       
       <br/>
@@ -484,7 +532,6 @@ sockets.tcpv4.each <span class="k">do</span> <span class="o">|</span>so<span cla
       </div>
     </div>
   
-
 
 
 

@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.7.2">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.20.3">
 <meta name="crystal_docs.project_version" content="master-dev">
 <meta name="crystal_docs.project_name" content="miniss">
 
@@ -22,9 +23,14 @@
 
 <svg class="hidden">
   <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
   </symbol>
 </svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
@@ -93,21 +99,57 @@
 <img src="https://img.shields.io/github/commit-activity/y/noraj/miniss?style=flat-square" alt="GitHub commit activity" /></p>
 <p><img src="docs/logo-miniss.png" alt="miniss logo" /></p>
 <p><strong>miniss</strong> (<em>mini ss</em>) displays a list of open listening sockets. It is a minimal alternative to <code>ss</code> or <code>netstat</code>.</p>
-<p>The goal of <strong>miniss</strong> is not to reinvent the wheel but rather to offer a static binary that can be deployed by pentester or CTF players on containers or hardened environnement where the classical <code>ss</code> or <code>netstat</code> binaries have been removed.</p>
-<h2><a id="installation" class="anchor" href="#installation">
+<p>The goal of <strong>miniss</strong> is not to reinvent the wheel but rather to offer a static binary that can be deployed by pentester or CTF players on containers or hardened environment where the classical <code>ss</code> or <code>netstat</code> binaries have been removed.</p>
+<p><img src="docs/preview.png" alt="preview" /></p>
+<h2><a id="build" class="anchor" href="#build">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Installation</h2>
+</a>Build</h2>
 <p><img src="https://img.shields.io/github/v/tag/noraj/miniss?sort=semver&amp;style=flat-square" alt="GitHub tag (latest SemVer)" />
 <img src="https://img.shields.io/github/v/tag/noraj/miniss?include_prereleases&amp;sort=semver&amp;style=flat-square" alt="GitHub tag (latest SemVer pre-release)" /></p>
-<p><span class="flag orange">TODO</span>  Write installation instructions here</p>
+<p>A pre-compiled static binary is provided only for <code>x86_64-linux-gnu</code>, see <a href="https://github.com/noraj/miniss/releases">releases</a>. Else read the <a href="docs/build.md">build</a> instructions.</p>
+<h2><a id="install" class="anchor" href="#install">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Install</h2>
+<p><a href="https://repology.org/project/miniss/versions"><img src="https://repology.org/badge/vertical-allrepos/miniss.svg" alt="Packaging status" /></a></p>
+<p>See <a href="docs/install.md">install</a> instructions.</p>
 <h2><a id="usage" class="anchor" href="#usage">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Usage</h2>
-<pre><code class="language-crystal">.<span class="o">/</span>miniss</code></pre>
+<pre><code class="language-crystal">miniss v0.0.2
+
+Usage:
+  miniss [--tcp | --udp] [--ipv4 | --ipv6] [--pid PID] [--listen --debug --no-color]
+  miniss -h | --help
+  miniss --version
+
+Options:
+  -u --udp      Show only UDP sockets.
+  -t --tcp      Show only TCP sockets.
+  -4 --ipv4     Show only IPv4 sockets.
+  -6 --ipv6     Show only IPv6 sockets.
+  -l --listen   Show only listening sockets.
+  -p --pid PID  Show sockets in the namespace of a given process ID.
+  --debug       Display arguments.
+  --no-color    Disable colorized output (NO_COLOR environment variable is respected too).
+  -h --help     Show this screen.
+  --version     Show version.
+
+Examples:
+  miniss --udp
+  miniss -t6
+  miniss --listen
+  miniss --pid 1234
+
+Project:
+  author (https://pwn.by/noraj / https://twitter.com/noraj_rawsec)
+  source (https://github.com/noraj/miniss)
+  documentation (https://noraj.github.io/miniss)</code></pre>
 <h2><a id="features" class="anchor" href="#features">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -116,7 +158,7 @@
 <ul>
 <li>Information displayed:
 <ul>
-<li>local address, remote address, state, username, uid</li>
+<li>type of socket, local address, remote address, state, username, uid</li>
 </ul>
 </li>
 <li>Type of sockets:
@@ -137,12 +179,13 @@
     <use href="#octicon-link"/>
   </svg>
 </a>Documentation</h2>
+<p>Documentation homepage: https://noraj.github.io/miniss/</p>
 <p><a href="https://noraj.github.io/miniss/lib-doc/Miniss.html"><img src="https://img.shields.io/badge/doc-library-black?logo=readthedocs&amp;logoColor=black&amp;style=flat-square" alt="Library documentation" /></a>
 <a href="https://noraj.github.io/miniss/build"><img src="https://img.shields.io/badge/doc-build-black?logo=readthedocs&amp;logoColor=black&amp;style=flat-square" alt="User documentation - Build" /></a>
+<a href="https://noraj.github.io/miniss/install"><img src="https://img.shields.io/badge/doc-install-black?logo=readthedocs&amp;logoColor=black&amp;style=flat-square" alt="User documentation - Install" /></a>
 <a href="https://noraj.github.io/miniss/CHANGELOG"><img src="https://img.shields.io/badge/doc-changelog-black?logo=readthedocs&amp;logoColor=black&amp;style=flat-square" alt="User documentation - Changelog" /></a>
 <a href="https://noraj.github.io/miniss/creating"><img src="https://img.shields.io/badge/doc-contributing-black?logo=readthedocs&amp;logoColor=black&amp;style=flat-square" alt="Developer documentation - Contributing" /></a>
-<a href="https://noraj.github.io/miniss/development"><img src="https://img.shields.io/badge/doc-development-black?logo=readthedocs&amp;logoColor=black&amp;style=flat-square" alt="Developer documentation - Development" /></a>
-<a href="https://noraj.github.io/miniss/TODO"><img src="https://img.shields.io/badge/doc-todo-black?logo=readthedocs&amp;logoColor=black&amp;style=flat-square" alt="User documentation - TODO" /></a></p>
+<a href="https://noraj.github.io/miniss/development"><img src="https://img.shields.io/badge/doc-development-black?logo=readthedocs&amp;logoColor=black&amp;style=flat-square" alt="Developer documentation - Development" /></a></p>
 <h2><a id="author" class="anchor" href="#author">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>

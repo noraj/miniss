@@ -6,5 +6,5 @@ module Miniss
   # `miniss` version.
   #
   # NOTE: see all versions available [on the release page](https://github.com/noraj/miniss/releases).
-  VERSION = "0.0.2"
+  VERSION = "0.0.3"
 end

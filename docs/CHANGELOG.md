@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [unreleased]
+## [0.0.3](https://github.com/noraj/miniss/releases/tag/0.0.3) - 2026-09-06
 
 - **Code**: Add a `-l --listen` option to show only listening sockets.
 - **Code**: Add a `-p --pid PID` option to show the sockets in the namespace of a given process ID by parsing `/proc/PID/net`
